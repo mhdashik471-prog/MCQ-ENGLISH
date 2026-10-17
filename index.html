@@ -1,0 +1,2340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Language Skills for Humanities and Other BA Programmes ( ENGIFA101 )</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-hover: #1e40af;
+      --accent: #2563eb;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #15803d;
+      --success-bg: #dcfce7;
+      --error: #b91c1c;
+      --error-bg: #fee2e2;
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 20px 10px;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border);
+    }
+
+    /* Login Screen */
+    #login-section {
+      text-align: center;
+      padding: 40px 20px;
+      max-width: 540px;
+      margin: 60px auto;
+    }
+
+    #login-section h1 {
+      font-size: 1.45rem;
+      color: var(--primary);
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-control:focus {
+      border-color: var(--accent);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      width: 100%;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-outline {
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      font-size: 0.85rem;
+    }
+
+    .btn-outline:hover {
+      background: #f1f5f9;
+      color: var(--text-main);
+    }
+
+    .btn-submit-exam {
+      background: var(--success);
+      color: #fff;
+      font-size: 1.1rem;
+      padding: 14px 28px;
+      margin: 30px auto;
+      display: block;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .btn-submit-exam:hover {
+      background: #166534;
+    }
+
+    /* Header */
+    .exam-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+
+    .exam-header h2 {
+      font-size: 1.25rem;
+      color: var(--primary);
+    }
+
+    .user-badge {
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* Question Cards */
+    .q-number {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .q-text {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .option-label {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border);
+      background: #fafafa;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      user-select: none;
+    }
+
+    .option-label:hover:not(.locked) {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+
+    .option-label input[type="radio"] {
+      margin-right: 12px;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+    }
+
+    .option-label.locked {
+      cursor: default;
+    }
+
+    .option-label.correct {
+      background-color: var(--success-bg) !important;
+      border-color: var(--success) !important;
+      color: #14532d !important;
+      font-weight: 600;
+    }
+
+    .option-label.incorrect {
+      background-color: var(--error-bg) !important;
+      border-color: var(--error) !important;
+      color: #7f1d1d !important;
+      font-weight: 600;
+    }
+
+    /* In-card interactive section */
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .hint-container, .malayalam-container {
+      font-size: 0.9rem;
+      padding: 10px 14px;
+      border-radius: 6px;
+      margin-top: 8px;
+      display: none;
+    }
+
+    .hint-container {
+      background: #fef9c3;
+      color: #713f12;
+      border-left: 4px solid #eab308;
+    }
+
+    .ml-text {
+      color: #0369a1;
+      font-weight: 500;
+      margin-left: 6px;
+    }
+
+    .status-badge {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-top: 6px;
+    }
+
+    .status-correct {
+      background: var(--success-bg);
+      color: var(--success);
+    }
+
+    .status-incorrect {
+      background: var(--error-bg);
+      color: var(--error);
+    }
+
+    /* Scorecard */
+    .scorecard {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 24px;
+      border: 2px solid var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .scorecard h3 {
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .scorecard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .score-item {
+      background: #f8fafc;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .score-item .label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .score-item .val {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-top: 4px;
+    }
+
+    .performance-note {
+      padding: 14px 18px;
+      background: #eff6ff;
+      border-left: 4px solid var(--accent);
+      border-radius: 6px;
+      color: #1e40af;
+      font-size: 0.95rem;
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-box {
+      background: #fff;
+      padding: 28px;
+      border-radius: 12px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-box h3 {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .modal-box p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .modal-actions .btn {
+      width: auto;
+      flex: 1;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- LOGIN SCREEN -->
+    <section id="login-section" class="card">
+      <h1>English Language Skills for Humanities and Other BA Programmes ( ENGIFA101 )</h1>
+      
+      <div class="form-group">
+        <label for="student-name">Student Full Name</label>
+        <input type="text" id="student-name" class="form-control" placeholder="Enter your full name" required>
+      </div>
+      
+      <button id="btn-start" class="btn btn-primary">Start Examination</button>
+    </section>
+
+    <!-- EXAM CONTAINER -->
+    <main id="exam-section" class="hidden">
+      <!-- HEADER -->
+      <div class="exam-header card">
+        <div>
+          <h2>English Language Skills ( ENGIFA101 )</h2>
+          <span style="font-size: 0.85rem; color: var(--text-muted);">Modules 1 - 4 Comprehensive Examination</span>
+        </div>
+        <div class="user-badge" id="student-badge">Student</div>
+      </div>
+
+      <!-- TOP SCORECARD PLACEHOLDER -->
+      <div id="top-scorecard-container"></div>
+
+      <!-- QUESTIONS LIST -->
+      <div id="questions-list"></div>
+
+      <!-- SUBMIT BUTTON -->
+      <button id="btn-submit" class="btn btn-submit-exam">Submit Examination</button>
+
+      <!-- BOTTOM SCORECARD PLACEHOLDER -->
+      <div id="bottom-scorecard-container"></div>
+    </main>
+  </div>
+
+  <!-- CONFIRMATION MODAL -->
+  <div id="confirm-modal" class="modal-backdrop">
+    <div class="modal-box">
+      <h3>Unanswered Questions Remaining</h3>
+      <p id="unanswered-count-text">You have skipped 0 questions. Are you sure you want to finish?</p>
+      <div class="modal-actions">
+        <button id="btn-modal-review" class="btn btn-outline">Review Questions</button>
+        <button id="btn-modal-proceed" class="btn btn-primary" style="background: var(--error);">Proceed & Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- 1. QUESTION DATABASE (ALL 121 QUESTIONS IN EXACT ORDER) ---
+    const questionsData = [
+      {
+        q: "Where did Martin Luther King Jr. deliver the 'I Have a Dream' speech?",
+        q_ml: "മാർട്ടിൻ ലൂഥർ കിംഗ് ജൂനിയർ 'എനിക്കൊരു സ്വപ്നമുണ്ട്' എന്ന പ്രസംഗം എവിടെ വെച്ചാണ് നടത്തിയത്?",
+        options: [
+          { text: "Montgomery, Alabama", ml: "മോണ്ട്ഗോമറി, അലബാമ" },
+          { text: "Washington, D.C.", ml: "വാഷിംഗ്ടൺ ഡി.സി." },
+          { text: "Atlanta, Georgia", ml: "അറ്റ്ലാന്റ, ജോർജിയ" },
+          { text: "Chicago, Illinois", ml: "ചിക്കാഗോ, ഇല്ലിനോയിസ്" }
+        ],
+        ans: 1,
+        hint: "Delivered at the Lincoln Memorial during the March on Washington in 1963.",
+        hint_ml: "1963-ൽ വാഷിംഗ്ടൺ മാർച്ചിനിടെ ലിങ്കൺ മെമ്മോറിയലിൽ വെച്ചാണ് ഇത് അവതരിപ്പിച്ചത്."
+      },
+      {
+        q: "What major theme does King emphasize in his 'dream'?",
+        q_ml: "തന്റെ 'സ്വപ്നത്തിൽ' കിംഗ് ഊന്നിപ്പറയുന്ന പ്രധാന പ്രമേയം എന്താണ്?",
+        options: [
+          { text: "Economic prosperity for all Americans", ml: "എല്ലാ അമേരിക്കക്കാർക്കും സാമ്പത്തിക അഭിവൃദ്ധി" },
+          { text: "A world without any political conflict", ml: "യാതൊരു രാഷ്ട്രീയ സംഘർഷവുമില്ലാത്ത ഒരു ലോകം" },
+          { text: "Racial equality and harmony", ml: "വംശീയ സമത്വവും ഐക്യവും" },
+          { text: "The expansion of American territory", ml: "അമേരിക്കൻ അതിർത്തി വികസനം" }
+        ],
+        ans: 2,
+        hint: "He envisioned an integrated society free from racial prejudice.",
+        hint_ml: "വംശീയ മുൻവിധിയില്ലാത്ത ഒരു സമൂഹമാണ് അദ്ദേഹം സ്വപ്നം കണ്ടത്."
+      },
+      {
+        q: "Which rhetorical device is most famously used throughout the speech?",
+        q_ml: "പ്രസംഗത്തിലുടനീളം ഏറ്റവും പ്രശസ്തമായി ഉപയോഗിച്ചിട്ടുള്ള ഭാഷാ പ്രയോഗം (rhetorical device) ഏതാണ്?",
+        options: [
+          { text: "Irony", ml: "വിരോധാഭാസം (Irony)" },
+          { text: "Repetition", ml: "ആവർത്തനം (Repetition)" },
+          { text: "Hyperbole", ml: "അതിശയോക്തി (Hyperbole)" },
+          { text: "Alliteration", ml: "അനുപ്രാസം (Alliteration)" }
+        ],
+        ans: 1,
+        hint: "Phrases like 'I have a dream' and 'Let freedom ring' recur repeatedly.",
+        hint_ml: "'എനിക്കൊരു സ്വപ്നമുണ്ട്' തുടങ്ങിയ വാചകങ്ങൾ നിരന്തരം ആവർത്തിക്കുന്നു."
+      },
+      {
+        q: "King refers to the Declaration of Independence to emphasize which idea?",
+        q_ml: "ഏത് ആശയം ഊന്നിപ്പറയാനാണ് കിംഗ് സ്വാതന്ത്ര്യ പ്രഖ്യാപനത്തെ പരാമർശിക്കുന്നത്?",
+        options: [
+          { text: "America should become a monarchy", ml: "അമേരിക്ക ഒരു രാജഭരണമായി മാറണം" },
+          { text: "All citizens must follow strict laws", ml: "എല്ലാ പൗരന്മാരും കർശനമായ നിയമങ്ങൾ പാലിക്കണം" },
+          { text: "The promise of equal rights for all", ml: "എല്ലാവർക്കും തുല്യാവകാശം എന്ന വാഗ്ദാനം" },
+          { text: "The need for more economic reforms", ml: "കൂടുതൽ സാമ്പത്തിക പരിഷ്കാരങ്ങളുടെ ആവശ്യം" }
+        ],
+        ans: 2,
+        hint: "The founding document stated that all men are created equal.",
+        hint_ml: "എല്ലാ മനുഷ്യരും തുല്യരായി സൃഷ്ടിക്കപ്പെട്ടിരിക്കുന്നു എന്ന് സ്ഥാപക രേഖയിൽ വ്യക്തമാക്കിയിട്ടുണ്ട്."
+      },
+      {
+        q: "According to the speech, what should people be judged by?",
+        q_ml: "പ്രസംഗമനുസരിച്ച്, ആളുകളെ എന്തിന്റെ അടിസ്ഥാനത്തിലാണ് വിലയിരുത്തേണ്ടത്?",
+        options: [
+          { text: "Their wealth", ml: "അവരുടെ സമ്പത്ത്" },
+          { text: "Their education level", ml: "അവരുടെ വിദ്യാഭ്യാസ നിലവാരം" },
+          { text: "The content of their character", ml: "അവരുടെ സ്വഭാവഗുണം (ഗുണവിശേഷങ്ങൾ)" },
+          { text: "Their political views", ml: "അവരുടെ രാഷ്ട്രീയ വീക്ഷണങ്ങൾ" }
+        ],
+        ans: 2,
+        hint: "Not by the color of their skin, but by who they are internally.",
+        hint_ml: "തൊലിയുടെ നിറത്തിനാലല്ല, അവരുടെ ഉള്ളിലെ ഗുണങ്ങളാലാണ്."
+      },
+      {
+        q: "What is the primary effect of King's use of 'we' throughout the speech?",
+        q_ml: "പ്രസംഗത്തിലുടനീളം കിംഗ് 'നാം' (we) എന്ന് ഉപയോഗിക്കുന്നതിന്റെ പ്രധാന പ്രഭാവം എന്താണ്?",
+        options: [
+          { text: "To highlight King's authority as a leader", ml: "ഒരു നേതാവെന്ന നിലയിൽ കിംഗിന്റെ അധികാരം ഉയർത്തിക്കാട്ടാൻ" },
+          { text: "To reduce the seriousness of the occasion", ml: "സന്ദർഭത്തിന്റെ ഗൗരവം കുറയ്ക്കാൻ" },
+          { text: "To create a sense of unity and inclusion", ml: "ഐക്യത്തിന്റെയും പങ്കാളിത്തത്തിന്റെയും വികാരം സൃഷ്ടിക്കാൻ" },
+          { text: "To criticize the audience", ml: "ശ്രോതാക്കളെ വിമർശിക്കാൻ" }
+        ],
+        ans: 2,
+        hint: "First-person plural fosters a collective, shared struggle.",
+        hint_ml: "കൂട്ടായ പോരാട്ടത്തിന്റെ വികാരമാണ് ഈ പദം ഉണ്ടാക്കുന്നത്."
+      },
+      {
+        q: "Which historical document or speech is referenced by King when he opens with 'Five score years ago'?",
+        q_ml: "'നൂറു വർഷങ്ങൾക്ക് മുമ്പ്' (Five score years ago) എന്ന് തുടങ്ങുമ്പോൾ കിംഗ് ഏത് ചരിത്ര രേഖയെയാണ് പരാമർശിക്കുന്നത്?",
+        options: [
+          { text: "Thomas Paine's Common Sense", ml: "തോമസ് പെയ്ന്റെ കോമൺ സെൻസ്" },
+          { text: "Abraham Lincoln's Gettysburg Address", ml: "എബ്രഹാം ലിങ്കന്റെ ഗെറ്റിസ്ബർഗ് പ്രസംഗം" },
+          { text: "George Washington's Farewell Address", ml: "ജോർജ്ജ് വാഷിംഗ്ടന്റെ വിടവാങ്ങൽ പ്രസംഗം" },
+          { text: "Franklin Roosevelt's Inaugural Address", ml: "ഫ്രാങ്ക്ലിൻ റൂസ്‌വെൽറ്റിന്റെ സ്ഥാനാരോഹണ പ്രസംഗം" }
+        ],
+        ans: 1,
+        hint: "Lincoln opened his famous 1863 address with 'Four score and seven years ago'.",
+        hint_ml: "ലിങ്കൺ തന്റെ പ്രസംഗം ആരംഭിച്ചത് സമാനമായ വാക്കുകളോടെയാണ്."
+      },
+      {
+        q: "Which literary or rhetorical device is used when King refers to another historical text or speech?",
+        q_ml: "മറ്റൊരു ചരിത്രരേഖയെയോ പ്രസംഗത്തെയോ പരാമർശിക്കുമ്പോൾ ഉപയോഗിക്കുന്ന സാഹിത്യ ഉപകരണം ഏതാണ്?",
+        options: [
+          { text: "Hyperbole", ml: "അതിശയോക്തി" },
+          { text: "Irony", ml: "വിരോധാഭാസം" },
+          { text: "Intertextuality", ml: "ഇന്റർടെക്സ്ച്വാലിറ്റി (പാഠാന്തരത)" },
+          { text: "Personification", ml: "വ്യക്തിത്വാരോപം" }
+        ],
+        ans: 2,
+        hint: "The relationship between one text and other pre-existing texts.",
+        hint_ml: "ഒരു പാഠം മറ്റൊരു പാഠവുമായി പുലർത്തുന്ന ബന്ധം."
+      },
+      {
+        q: "Why does King repeat the phrase 'one hundred years later' several times in the speech?",
+        q_ml: "'നൂറു വർഷങ്ങൾക്ക് ശേഷവും' എന്ന വാചകം കിംഗ് ആവർത്തിക്കുന്നത് എന്തുകൊണ്ടാണ്?",
+        options: [
+          { text: "To provide statistical accuracy", ml: "സ്ഥിതിവിവരക്കണക്കുകളുടെ കൃത്യത നൽകാൻ" },
+          { text: "To slow down the speech for clarity", ml: "വ്യക്തതയ്ക്കായി പ്രസംഗം സാവധാനത്തിലാക്കാൻ" },
+          { text: "To emphasize the long delay in achieving justice and freedom", ml: "നീതിയും സ്വാതന്ത്ര്യവും കൈവരിക്കുന്നതിലെ കാലതാമസം വ്യക്തമാക്കാൻ" },
+          { text: "To praise historical progress", ml: "ചരിത്രപരമായ പുരോഗതിയെ പ്രശംസിക്കാൻ" }
+        ],
+        ans: 2,
+        hint: "A century had passed since emancipation, yet full freedom remained elusive.",
+        hint_ml: "വിമോചനത്തിന് ശേഷം ഒരു നൂറ്റാണ്ട് പിന്നിട്ടിട്ടും പൂർണ്ണ സ്വാതന്ത്ര്യം ലഭിച്ചില്ല എന്ന് ഓർമ്മിപ്പിക്കുന്നു."
+      },
+      {
+        q: "In the check or promissory note metaphor, what does the 'bad check' refer to?",
+        q_ml: "ചെക്ക് രൂപകത്തിൽ (metaphor), 'ബാഡ് ചെക്ക്' എന്നത് എന്തിനെയാണ് സൂചിപ്പിക്കുന്നത്?",
+        options: [
+          { text: "Economic failure of the government", ml: "സർക്കാരിന്റെ സാമ്പത്തിക പരാജയം" },
+          { text: "Corruption in the federal banking systems", ml: "ബാങ്കിംഗ് സംവിധാനങ്ങളിലെ അഴിമതി" },
+          { text: "America's failure to deliver guaranteed constitutional rights to citizens of colour", ml: "കറുത്തവർഗ്ഗക്കാർക്ക് ഭരണഘടനാപരമായ അവകാശങ്ങൾ നൽകുന്നതിൽ അമേരിക്ക വരുത്തിയ വീഴ്ച" },
+          { text: "Individual financial struggles among citizens", ml: "പൗരന്മാരുടെ വ്യക്തിഗത സാമ്പത്തിക ബുദ്ധിമുട്ടുകൾ" }
+        ],
+        ans: 2,
+        hint: "America defaulted on its moral and constitutional promise to Black citizens.",
+        hint_ml: "അമേരിക്ക തങ്ങളുടെ പൗരന്മാർക്ക് നൽകിയ വാഗ്ദാനം പാലിക്കുന്നതിൽ പരാജയപ്പെട്ടു."
+      },
+      {
+        q: "Which rhetorical appeal is primarily used when King evokes deep emotions such as injustice, empathy, and hope?",
+        q_ml: "നീതികേട്, സഹാനുഭൂതി, പ്രതീക്ഷ തുടങ്ങിയ വികാരങ്ങൾ ഉണർത്താൻ കിംഗ് ഉപയോഗിക്കുന്ന തന്ത്രം ഏതാണ്?",
+        options: [
+          { text: "Ethos", ml: "ഈത്തോസ് (Ethos)" },
+          { text: "Pathos", ml: "പാത്തോസ് (Pathos)" },
+          { text: "Logos", ml: "ലോഗോസ് (Logos)" },
+          { text: "Allegory", ml: "അലിഗറി (Allegory)" }
+        ],
+        ans: 1,
+        hint: "Aristotle's appeal to the audience's emotions.",
+        hint_ml: "ശ്രോതാക്കളുടെ വികാരങ്ങളെ സ്പർശിക്കുന്ന അരിസ്റ്റോട്ടിലിന്റെ വാദരീതി."
+      },
+      {
+        q: "What literary device is exemplified by the repetition of a phrase at the beginning of successive clauses (such as 'I have a dream')?",
+        q_ml: "വാക്യങ്ങളുടെ തുടക്കത്തിൽ ഒരേ വാചകം ആവർത്തിച്ചുപയോഗിക്കുന്ന അലങ്കാരം ഏതാണ്?",
+        options: [
+          { text: "Metaphor", ml: "രൂപകം (Metaphor)" },
+          { text: "Anaphora", ml: "അനാഫൊറ (Anaphora)" },
+          { text: "Alliteration", ml: "അനുപ്രാസം (Alliteration)" },
+          { text: "Oxymoron", ml: "വിരോധാഭാസം (Oxymoron)" }
+        ],
+        ans: 1,
+        hint: "Repetition of a word or phrase at the beginning of successive sentences.",
+        hint_ml: "തുടർച്ചയായ വാക്യങ്ങളുടെ തുടക്കത്തിൽ വാക്കുകൾ ആവർത്തിക്കുന്നത്."
+      },
+      {
+        q: "What does King advocate when confronting injustice and oppression?",
+        q_ml: "നീതികേടുകളെയും അടിച്ചമർത്തലുകളെയും നേരിടാൻ കിംഗ് മുന്നോട്ടുവെച്ച മാർഗ്ഗം എന്താണ്?",
+        options: [
+          { text: "Using stronger weapons and physical retaliation", ml: "ആയുധങ്ങളും കായികമായ തിരിച്ചടിയും ഉപയോഗിക്കുക" },
+          { text: "Avoiding all protest and remaining passive", ml: "പ്രതിഷേധങ്ങൾ ഒഴിവാക്കി നിഷ്ക്രിയരായിരിക്കുക" },
+          { text: "Responding with nonviolence, dignity, and moral strength", ml: "അഹിംസ, അന്തസ്സ്, ധാർമ്മിക ശക്തി എന്നിവയോടെ പ്രതികരിക്കുക" },
+          { text: "Seeking foreign international intervention", ml: "വിദേശ ഇടപെടൽ തേടുക" }
+        ],
+        ans: 2,
+        hint: "His philosophy was deeply rooted in nonviolent direct action.",
+        hint_ml: "അഹിംസാ മാർഗ്ഗത്തിലുള്ള സമാധാനപരമായ പോരാട്ടം."
+      },
+      {
+        q: "The speech mainly inspires which feeling in listeners and participants of the civil rights movement?",
+        q_ml: "പൗരാവകാശ പ്രസ്ഥാനത്തിലെ ശ്രോതാക്കളിൽ ഈ പ്രസംഗം പ്രധാനമായും ഉണർത്തുന്ന വികാരം ഏതാണ്?",
+        options: [
+          { text: "Fear", ml: "ഭയം" },
+          { text: "Cynicism", ml: "വിരക്തി / അവിശ്വാസം" },
+          { text: "Hope", ml: "പ്രതീക്ഷ" },
+          { text: "Indifference", ml: "ഉദാസീനത" }
+        ],
+        ans: 2,
+        hint: "A forward-looking, optimistic vision of justice.",
+        hint_ml: "നീതി കൈവരുമെന്ന ശോഭനമായ പ്രതീക്ഷ."
+      },
+      {
+        q: "Toward the end of the address, King urges his audience:",
+        q_ml: "പ്രസംഗത്തിന്റെ അവസാനത്തിൽ കിംഗ് തന്റെ ശ്രോതാക്കളോട് ആവശ്യപ്പെടുന്നത് എന്താണ്?",
+        options: [
+          { text: "To end the movement immediately", ml: "പ്രസ്ഥാനം ഉടൻ അവസാനിപ്പിക്കാൻ" },
+          { text: "To avoid national attention and media scrutiny", ml: "ദേശീയ ശ്രദ്ധയും മാധ്യമ ശ്രദ്ധയും ഒഴിവാക്കാൻ" },
+          { text: "To continue organized, relentless, nonviolent action across their home states", ml: "സ്വന്തം സംസ്ഥാനങ്ങളിൽ സംഘടിതവും അഹിംസാത്മകവുമായ പ്രവർത്തനം തുടരാൻ" },
+          { text: "To return to normal life and accept existing conditions", ml: "സാധാരണ ജീവിതത്തിലേക്ക് മടങ്ങാനും സാഹചര്യങ്ങൾ അംഗീകരിക്കാനും" }
+        ],
+        ans: 2,
+        hint: "Go back to Mississippi, Alabama, and elsewhere knowing that the situation can and will be changed.",
+        hint_ml: "സാഹചര്യങ്ങൾ മാറ്റാൻ കഴിയുമെന്ന വിശ്വാസത്തോടെ പോരാട്ടം തുടരുക."
+      },
+      {
+        q: "According to the poem, what instruction is heard at the break of day that encourages renewal and resilience?",
+        q_ml: "'ആന്തം' കവിതയനുസരിച്ച്, പ്രഭാതത്തിൽ കേൾക്കുന്ന ഏത് നിർദ്ദേശമാണ് നവീകരണത്തെയും അതിജീവനത്തെയും പ്രോത്സാഹിപ്പിക്കുന്നത്?",
+        options: [
+          { text: "Focus only on what is yet to be.", ml: "ഇനി വരാനിരിക്കുന്നതിൽ മാത്രം ശ്രദ്ധ കേന്ദ്രീകരിക്കുക." },
+          { text: "Start again, and do not dwell on the past or future.", ml: "വീണ്ടും ആരംഭിക്കുക, ഭൂതകാലത്തിലോ ഭാവിയിലോ മുഴുകാതിരിക്കുക." },
+          { text: "Ring the bells that still can ring, ignoring the past.", ml: "കഴിഞ്ഞകാലത്തെ അവഗണിച്ച് മണികൾ മുഴക്കുക." },
+          { text: "Fight the wars that will be fought again.", ml: "വീണ്ടും ഉണ്ടാകുന്ന യുദ്ധങ്ങളിൽ പോരാടുക." }
+        ],
+        ans: 1,
+        hint: "The birds sing: 'Do not dwell on what has passed away or what is yet to be.'",
+        hint_ml: "കഴിഞ്ഞുപോയതിനെക്കുറിച്ചോ വരാനിരിക്കുന്നതിനെക്കുറിച്ചോ ആകുലപ്പെടാതെ വീണ്ടും തുടങ്ങുക."
+      },
+      {
+        q: "What specific critique is offered regarding the 'holy dove', often symbolising peace or innocence?",
+        q_ml: "സമാധാനത്തിന്റെ പ്രതീകമായ 'വിശുദ്ധ പ്രാവുമായി' (holy dove) ബന്ധപ്പെട്ട് കവിതയിൽ നടത്തുന്ന വിമർശനം എന്താണ്?",
+        options: [
+          { text: "It is often forgotten when the wars are fought.", ml: "യുദ്ധം നടക്കുമ്പോൾ അത് വിസ്മരിക്കപ്പെടുന്നു." },
+          { text: "It sings to announce the need to start again.", ml: "വീണ്ടും തുടങ്ങേണ്ടതിന്റെ ആവശ്യകത അറിയിക്കാൻ അത് പാടുന്നു." },
+          { text: "It is continually caught, bought, and sold, confirming it is 'never free'.", ml: "അതിനെ നിരന്തരം പിടിക്കുകയും വാങ്ങുകയും വിൽക്കുകയും ചെയ്യുന്നു, അതൊരിക്കലും സ്വതന്ത്രമല്ല." },
+          { text: "It represents the perfect offering that must be forgotten.", ml: "അത് മറക്കേണ്ട പൂർണ്ണമായ വഴിപാടിനെ പ്രതിനിധീകരിക്കുന്നു." }
+        ],
+        ans: 2,
+        hint: "'She will be bought and sold again... She's never free.'",
+        hint_ml: "സമാധാനം പോലും കച്ചവടവൽക്കരിക്കപ്പെടുകയും ബന്ധനത്തിലാവുകയും ചെയ്യുന്നു."
+      },
+      {
+        q: "The speaker rejects complicity with the 'lawless crowd' and highlights the hypocrisy of the powerful by noting that the 'killers in high places' are doing what action?",
+        q_ml: "ഉന്നത സ്ഥാനങ്ങളിലിരിക്കുന്ന കൊലയാളികളുടെ കാപട്യം ചൂണ്ടിക്കാണിക്കാൻ അവർ എന്ത് ചെയ്യുന്നു എന്നാണ് കവി പറയുന്നത്?",
+        options: [
+          { text: "Summoning a thundercloud.", ml: "ഇടിമിന്നൽ മേഘങ്ങളെ വിളിച്ചുവരുത്തുന്നു." },
+          { text: "Running away from the battle.", ml: "യുദ്ധക്കളത്തിൽ നിന്ന് ഓടിയൊളിക്കുന്നു." },
+          { text: "Saying their prayers out loud.", ml: "ഉച്ചത്തിൽ പ്രാർത്ഥനകൾ ചൊല്ലുന്നു." },
+          { text: "Adding up the parts to find the sum.", ml: "ആകെത്തുക കണ്ടെത്താൻ ഭാഗങ്ങൾ കൂട്ടിച്ചേർക്കുന്നു." }
+        ],
+        ans: 2,
+        hint: "They publicly profess piety while perpetrating violence.",
+        hint_ml: "അവർ ക്രൂരതകൾ ചെയ്യുമ്പോഴും പുറമേക്ക് ഉച്ചത്തിൽ പ്രാർത്ഥിക്കുന്നു."
+      },
+      {
+        q: "What metaphorical element is identified as the necessary channel for 'the light' to enter, reflecting the central theme of grace through imperfection?",
+        q_ml: "വെളിച്ചം പ്രവേശിക്കാൻ ആവശ്യമായ ചാനലായി കവിതയിൽ ചൂണ്ടിക്കാണിക്കുന്ന രൂപകം ഏതാണ്?",
+        options: [
+          { text: "The ringing of the bells that still can ring.", ml: "ഇപ്പോഴും മുഴങ്ങാൻ കഴിയുന്ന മണികളുടെ ശബ്ദം." },
+          { text: "The birth betrayed or the marriage spent.", ml: "വഞ്ചിക്കപ്പെട്ട ജനനം അല്ലെങ്കിൽ നഷ്ടപ്പെട്ട വിവാഹം." },
+          { text: "A crack, a crack in everything.", ml: "എല്ലാറ്റിലുമുള്ള വിള്ളൽ (A crack in everything)." },
+          { text: "The finding of a drum for the march.", ml: "മാർച്ചിനായി ഒരു ഡ്രം കണ്ടെത്തുന്നത്." }
+        ],
+        ans: 2,
+        hint: "'There is a crack, a crack in everything / That's how the light gets in.'",
+        hint_ml: "എല്ലാറ്റിലും ഒരു വിള്ളലുണ്ട്, അതിലൂടെയാണ് വെളിച്ചം കടന്നുവരുന്നത്."
+      },
+      {
+        q: "The poem states that 'Every heart, every heart / To love will come.' However, how is the arrival of this love characterised, indicating a sense of vulnerability?",
+        q_ml: "എല്ലാ ഹൃദയങ്ങളിലും സ്നേഹം എത്തുമെന്ന് കവിത പറയുന്നുണ്ടെങ്കിലും, അത് എങ്ങനെയാണ് വന്നെത്തുന്നത്?",
+        options: [
+          { text: "Like a perfect offering.", ml: "ഒരു തികഞ്ഞ വഴിപാട് പോലെ." },
+          { text: "Like a lawless crowd.", ml: "ഒരു നിയമവിരുദ്ധ കൂട്ടത്തെപ്പോലെ." },
+          { text: "Like a thundercloud.", ml: "ഒരു കാർമേഘം പോലെ." },
+          { text: "But like a refugee.", ml: "ഒരു അഭയാർത്ഥിയെപ്പോലെ (Like a refugee)." }
+        ],
+        ans: 3,
+        hint: "Love arrives seeking shelter and compassion, fragile and displaced.",
+        hint_ml: "അഭയം തേടുന്ന ഒരു അഭയാർത്ഥിയെപ്പോലെയാണ് സ്നേഹം കടന്നുവരുന്നത്."
+      },
+      {
+        q: "Leonard Cohen's 'Anthem' is often interpreted as a call for:",
+        q_ml: "ലിയോനാർഡ് കോഹന്റെ 'ആന്തം' സാധാരണയായി എന്തിനായുള്ള ആഹ്വാനമായാണ് വ്യാഖ്യാനിക്കപ്പെടുന്നത്?",
+        options: [
+          { text: "Violent political revolution", ml: "അക്രമപരമായ രാഷ്ട്രീയ വിപ്ലവം" },
+          { text: "Acceptance of human flaws, vulnerability, and imperfections", ml: "മനുഷ്യന്റെ കുറവുകളും അപൂർണ്ണതകളും അംഗീകരിക്കൽ" },
+          { text: "Radical economic reform", ml: "തീവ്ര സാമ്പത്തിക പരിഷ്കരണം" },
+          { text: "Escaping reality and ignoring the world", ml: "യാഥാർത്ഥ്യത്തിൽ നിന്ന് ഒളിച്ചോടലും ലോകത്തെ അവഗണിക്കലും" }
+        ],
+        ans: 1,
+        hint: "It urges people to find hope amidst human brokenness.",
+        hint_ml: "മനുഷ്യന്റെ അപൂർണ്ണതകൾക്കിടയിലും പ്രത്യാശ കണ്ടെത്തുക."
+      },
+      {
+        q: "In 'Anthem', Cohen mentions 'the bells', which can be interpreted as a metaphor for:",
+        q_ml: "'ആന്തം' എന്ന കവിതയിലെ 'മണികൾ' എന്തിന്റെ രൂപകമായി വ്യാഖ്യാനിക്കാം?",
+        options: [
+          { text: "War, violence, and conflict", ml: "യുദ്ധം, അക്രമം, സംഘർഷം" },
+          { text: "Superficial joy and temporary celebration", ml: "ഉപരിപ്ലവമായ സന്തോഷം" },
+          { text: "Rigid tradition and blind routine", ml: "പാരമ്പര്യവും അന്ധമായ ശീലങ്ങളും" },
+          { text: "Change, spiritual awakening, and hope", ml: "മാറ്റം, ആത്മീയ ഉണർവ്, പ്രത്യാശ" }
+        ],
+        ans: 3,
+        hint: "Bells call people to awaken and celebrate life despite flaws.",
+        hint_ml: "ആത്മീയമായ ഉണർവിനെയും നന്മയെയും ഓർമ്മിപ്പിക്കുന്ന മണികൾ."
+      },
+      {
+        q: "Leonard Cohen's 'Anthem' encourages listeners to:",
+        q_ml: "ലിയോനാർഡ് കോഹന്റെ 'ആന്തം' ശ്രോതാക്കളെ എന്തിനാണ് പ്രോത്സാഹിപ്പിക്കുന്നത്?",
+        options: [
+          { text: "Strive for flawless perfection in all things", ml: "എല്ലാ കാര്യങ്ങളിലും പൂർണ്ണതയ്ക്കായി പരിശ്രമിക്കാൻ" },
+          { text: "Embrace imperfection as an inevitable and beautiful part of life", ml: "അപൂർണ്ണതകളെ ജീവിതത്തിന്റെ ഭാഗമായി സ്വീകരിക്കാൻ" },
+          { text: "Ignore the world's problems completely", ml: "ലോകത്തിന്റെ പ്രശ്നങ്ങളെ പൂർണ്ണമായും അവഗണിക്കാൻ" },
+          { text: "Seek material wealth and prestige above all else", ml: "ഭൗതിക സമ്പത്തും പദവിയും മാത്രം തേടാൻ" }
+        ],
+        ans: 1,
+        hint: "Forget your perfect offering and embrace reality.",
+        hint_ml: "പൂർണ്ണതയ്ക്കായുള്ള അനാവശ്യ വാശി ഉപേക്ഷിച്ച് അപൂർണ്ണതകളെ പുണരുക."
+      },
+      {
+        q: "What kind of text is 'Anthem' in the course listening module?",
+        q_ml: "പഠന മൊഡ്യൂളിൽ 'ആന്തം' ഏത് തരത്തിലുള്ള ടെക്സ്റ്റ് ആണ്?",
+        options: [
+          { text: "A political speech", ml: "ഒരു രാഷ്ട്രീയ പ്രസംഗം" },
+          { text: "A short story narrative", ml: "ഒരു ചെറുകഥ" },
+          { text: "A song with poetic lyrics", ml: "കവിതാത്മകമായ വരികളുള്ള ഒരു ഗാനം" },
+          { text: "A newspaper editorial", ml: "ഒരു പത്ര മുഖപ്രസംഗം" }
+        ],
+        ans: 2,
+        hint: "It is a celebrated musical piece written and sung by Cohen.",
+        hint_ml: "കോഹൻ എഴുതി ആലപിച്ച പ്രസിദ്ധമായ ഒരു ഗാനം."
+      },
+      {
+        q: "What message do the birds give in the first stanza of 'Anthem'?",
+        q_ml: "'ആന്തം' എന്ന ഗാനത്തിന്റെ ആദ്യ വരികളിൽ പക്ഷികൾ നൽകുന്ന സന്ദേശം എന്താണ്?",
+        options: [
+          { text: "Remember and lament the past", ml: "കഴിഞ്ഞകാലത്തെ ഓർത്ത് വിലപിക്കുക" },
+          { text: "Fear what the future holds", ml: "ഭാവിയെ ഭയപ്പെടുക" },
+          { text: "Start again and live fully in the present", ml: "വീണ്ടും ആരംഭിക്കുക, വർത്തമാനകാലത്തിൽ പൂർണ്ണമായി ജീവിക്കുക" },
+          { text: "Wait for ideal conditions before acting", ml: "അനുയോജ്യമായ സാഹചര്യങ്ങൾക്കായി കാത്തിരിക്കുക" }
+        ],
+        ans: 2,
+        hint: "'Start again' without dwelling on what has passed away.",
+        hint_ml: "ഭൂതകാലത്തെക്കുറിച്ചോർക്കാതെ വീണ്ടും ആരംഭിക്കുക."
+      },
+      {
+        q: "In the third stanza of 'Anthem', what kind of 'signs' are given to humanity?",
+        q_ml: "'ആന്തം' എന്ന കവിതയുടെ മൂന്നാം ഭാഗത്ത് മനുഷ്യർക്ക് നൽകപ്പെടുന്ന അടയാളങ്ങൾ ഏതാണ്?",
+        options: [
+          { text: "Miracles and divine blessings", ml: "അത്ഭുതങ്ങളും ദൈവാനുഗ്രഹങ്ങളും" },
+          { text: "Messages from heavenly angels", ml: "മാലാഖമാരുടെ സന്ദേശങ്ങൾ" },
+          { text: "Evidence of social and moral decay", ml: "സാമൂഹികവും ധാർമ്മികവുമായ തകർച്ചയുടെ ലക്ഷണങ്ങൾ" },
+          { text: "Triumphant scientific breakthroughs", ml: "ശാസ്ത്രീയ മുന്നേറ്റങ്ങൾ" }
+        ],
+        ans: 2,
+        hint: "Signs of trouble, war, and moral disintegration.",
+        hint_ml: "ധാർമ്മിക തകർച്ചയുടെയും അസ്വസ്ഥതകളുടെയും അടയാളങ്ങൾ."
+      },
+      {
+        q: "In the fifth stanza, what does 'You can add up the parts, but you won't have the sum' suggest?",
+        q_ml: "'ഭാഗങ്ങൾ കൂട്ടിച്ചേർക്കാം, എന്നാൽ ആകെത്തുക ലഭിക്കില്ല' എന്നത് എന്താണ് വ്യക്തമാക്കുന്നത്?",
+        options: [
+          { text: "Life can be fully calculated through formal logic", ml: "ജീവിതം യുക്തിയിലൂടെ പൂർണ്ണമായി കണക്കുകൂട്ടാം" },
+          { text: "Life cannot be fully understood or explained purely by mechanical reason", ml: "ജീവിതത്തെ യാന്ത്രിക യുക്തികൊണ്ട് പൂർണ്ണമായി മനസ്സിലാക്കാൻ കഴിയില്ല" },
+          { text: "Mathematics is flawed and useless", ml: "ഗണിതം ഉപയോഗശൂന്യമാണ്" },
+          { text: "Intellectual inquiry should be completely abandoned", ml: "ചിന്തകളെല്ലാം ഉപേക്ഷിക്കണം" }
+        ],
+        ans: 1,
+        hint: "Human existence and mystery exceed sterile intellectual equations.",
+        hint_ml: "മനുഷ്യജീവിതത്തിന്റെ ആഴം ലളിതമായ കണക്കുകൂട്ടലുകൾക്ക് അപ്പുറമാണ്."
+      },
+      {
+        q: "The phrase 'forget your perfect offering' advises us to:",
+        q_ml: "'നിങ്ങളുടെ തികഞ്ഞ വഴിപാട് മറക്കുക' എന്ന വാചകം നമ്മെ എന്താണ് ഉപദേശിക്കുന്നത്?",
+        options: [
+          { text: "Cease believing in religion and ethics", ml: "മതത്തിലും ധാർമ്മികതയിലും വിശ്വസിക്കുന്നത് നിർത്തുക" },
+          { text: "Wait until conditions are flawless before trying", ml: "സാഹചര്യങ്ങൾ തികഞ്ഞതാകുന്നതുവരെ കാത്തിരിക്കുക" },
+          { text: "Let go of the paralyzing pursuit of perfection and contribute what we can", ml: "പൂർണ്ണതയ്ക്കായുള്ള വാശി ഉപേക്ഷിച്ച് നമ്മളാൽ കഴിയുന്നത് ചെയ്യുക" },
+          { text: "Avoid helping others in distress", ml: "മറ്റുള്ളവരെ സഹായിക്കാതിരിക്കുക" }
+        ],
+        ans: 2,
+        hint: "Perfectionism prevents action; do what you can right now.",
+        hint_ml: "പൂർണ്ണതയ്ക്കായുള്ള വ്യഗ്രത കർമ്മങ്ങളെ തടസ്സപ്പെടുത്തരുത്."
+      },
+      {
+        q: "How does Amy Morales Lara personally define art in the context of her discussion?",
+        q_ml: "ഏമി മൊറേൽസ് ലാറ കലയെ വ്യക്തിപരമായി എങ്ങനെ നിർവചിക്കുന്നു?",
+        options: [
+          { text: "A skill that requires a formal professional certification", ml: "പ്രൊഫഷണൽ സർട്ടിഫിക്കറ്റ് ആവശ്യമുള്ള ഒരു വൈദഗ്ധ്യം" },
+          { text: "A clinical discipline strictly regulated by institutions", ml: "സ്ഥാപനങ്ങൾ നിയന്ത്രിക്കുന്ന ഒരു ശാഖ" },
+          { text: "A form of creative expression that can help you tell a story", ml: "കഥ പറയാൻ സഹായിക്കുന്ന ഒരു സർഗ്ഗാത്മക പ്രകടന രൂപം" },
+          { text: "Only specialized elite fields like fine oil painting and classical sculpture", ml: "ചിത്രകലയും ശിൽപകലയും പോലെയുള്ള ചില മേഖലകൾ മാത്രം" }
+        ],
+        ans: 2,
+        hint: "Art is self-expression accessible to anyone to narrate their story.",
+        hint_ml: "സ്വന്തം അനുഭവം പങ്കുവെക്കാനും കഥ പറയാനുമുള്ള സർഗ്ഗാത്മക മാധ്യമം."
+      },
+      {
+        q: "According to Amy Morales Lara, what is the primary role of a 'helper' in the context of social work?",
+        q_ml: "സോഷ്യൽ വർക്കിൽ ഒരു 'സഹായി'യുടെ (helper) പ്രധാന പങ്ക് എന്താണ്?",
+        options: [
+          { text: "To rescue someone from their problems and impose definitive solutions", ml: "ഒരാളെ രക്ഷിച്ച് സ്വന്തം പരിഹാരങ്ങൾ അടിച്ചേൽപ്പിക്കുക" },
+          { text: "To manage bureaucratic caseloads and institutional data", ml: "സ്ഥാപനങ്ങളുടെ ഫയലുകൾ മാത്രം കൈകാര്യം ചെയ്യുക" },
+          { text: "To partner with someone in their own process of self-development and growth", ml: "സ്വയം വികസനത്തിനും വളർച്ചയ്ക്കുമായി ഒരു പങ്കാളിയായി കൂടെ നിൽക്കുക" },
+          { text: "To challenge negative self-narratives through professional music production alone", ml: "സംഗീത നിർമ്മാണത്തിലൂടെ മാത്രം വ്യക്തികളെ മാറ്റുക" }
+        ],
+        ans: 2,
+        hint: "Walking alongside individuals as partners rather than saviors.",
+        hint_ml: "ഒരാളുടെ സ്വന്തം വളർച്ചയ്ക്കുള്ള പ്രക്രിയയിൽ ഒപ്പം പങ്കാളിയായി പ്രവർത്തിക്കുക."
+      },
+      {
+        q: "What phrase, spoken by her professor, validated Amy Morales Lara's idea of combining creative arts and social work?",
+        q_ml: "കലയെയും സോഷ്യൽ വർക്കിനെയും സംയോജിപ്പിക്കാനുള്ള ആശയത്തിന് സാധൂകരണമായി പ്രൊഫസർ പറഞ്ഞ വാചകം ഏതാണ്?",
+        options: [
+          { text: "\"The intersection is not impossible, only requires courage.\"", ml: "\"ഈ സംയോജനം അസാധ്യമല്ല, ധൈര്യം മാത്രം മതി.\"" },
+          { text: "\"In many ways, many social workers are also frustrated artists.\"", ml: "\"പലവിധത്തിൽ, സോഷ്യൽ വർക്കർമാരിൽ പലരും നിരാശരായ കലാകാരന്മാരാണ്.\"" },
+          { text: "\"Art is accessible to everyone, regardless of skill level.\"", ml: "\"വൈദഗ്ധ്യമില്ലെങ്കിലും കല എല്ലാവർക്കും പ്രാപ്യമാണ്.\"" },
+          { text: "\"You must lean into the principles of compassion, empathy, and curiosity.\"", ml: "\"സഹാനുഭൂതിയും ജിജ്ഞാസയും മുറുകെപ്പിടിക്കണം.\"" }
+        ],
+        ans: 1,
+        hint: "Her professor noted that many social workers harbor creative artistic instincts.",
+        hint_ml: "പല സോഷ്യൽ വർക്കർമാരും ഉള്ളിൽ ഒരു കലാകാരനെ സൂക്ഷിക്കുന്നവരാണ് എന്ന് പ്രൊഫസർ നിരീക്ഷിച്ചു."
+      },
+      {
+        q: "Amy Morales Lara notes that art is present in advocacy. What specific example does she cite to show how creative people use art in advocacy?",
+        q_ml: "അവകാശ പോരാട്ടങ്ങളിൽ കല എങ്ങനെ ഉപയോഗിക്കുന്നു എന്നതിന് ഏമി പറയുന്ന ഉദാഹരണം എന്താണ്?",
+        options: [
+          { text: "Creating commercial digital advertisements for social campaigns", ml: "വാണിജ്യ പരസ്യങ്ങൾ നിർമ്മിക്കൽ" },
+          { text: "Organizing corporate charity galas", ml: "വൻകിട ചാരിറ്റി വിരുന്നുകൾ സംഘടിപ്പിക്കൽ" },
+          { text: "Utilizing beautiful images and inspiring words on picket signs during protests", ml: "പ്രതിഷേധങ്ങളിൽ പ്ലക്കാർഡുകളിൽ മനോഹരമായ ചിത്രങ്ങളും വാക്കുകളും ഉപയോഗിക്കുന്നത്" },
+          { text: "Implementing pharmaceutical therapy for clinical depression", ml: "മരുന്നുകൾ നൽകിയുള്ള ചികിത്സ" }
+        ],
+        ans: 2,
+        hint: "Visual posters and evocative messages during marches.",
+        hint_ml: "പ്രതിഷേധ സമരങ്ങളിൽ പ്രദർശിപ്പിക്കുന്ന ബോർഡുകളും ചിത്രങ്ങളും."
+      },
+      {
+        q: "Amy Morales Lara highlights that the Bronx had a meaningful art renaissance. Name any two cultural developments she mentions that were cultivated in the Bronx:",
+        q_ml: "ബ്രോങ്ക്സിൽ വികസിച്ചുവന്നതായി ഏമി ലാറ പരാമർശിക്കുന്ന രണ്ട് സാംസ്കാരിക കലാരൂപങ്ങൾ ഏവ?",
+        options: [
+          { text: "Abstract painting and modern minimalist poetry", ml: "അമൂർത്ത ചിത്രകലയും ആധുനിക കവിതയും" },
+          { text: "Classical symphony and opera", ml: "ക്ലാസിക്കൽ സിംഫണിയും ഓപ്പറയും" },
+          { text: "Hip-hop and salsa", ml: "ഹിപ്-ഹോപ്പും സാൽസയും (Hip-hop and salsa)" },
+          { text: "Documentary cinema and traditional Broadway theater", ml: "ഡോക്യുമെന്ററി സിനിമയും തിയേറ്ററും" }
+        ],
+        ans: 2,
+        hint: "Urban music and dance genres deeply rooted in the Bronx community.",
+        hint_ml: "ബ്രോങ്ക്സിലെ തെരുവുകളിൽ പിറവിയെടുത്ത സംഗീത, നൃത്ത രൂപങ്ങൾ."
+      },
+      {
+        q: "When encouraging the audience to enter an art space, what key quality does Amy Morales Lara explicitly state is NOT the goal?",
+        q_ml: "ഒരു കലാ ഇടത്തിലേക്ക് കടന്നുവരുമ്പോൾ, അത് എന്തിനുള്ള ലക്ഷ്യമല്ല എന്നാണ് ഏമി പറയുന്നത്?",
+        options: [
+          { text: "Courageousness", ml: "ധൈര്യം" },
+          { text: "Openness", ml: "തുറന്ന മനസ്സ്" },
+          { text: "Bravery", ml: "ധീരത" },
+          { text: "Perfection", ml: "പൂർണ്ണത (Perfection)" }
+        ],
+        ans: 3,
+        hint: "Artistic expression is about emotional exploration, not technical flawlessness.",
+        hint_ml: "കുറ്റമറ്റ പൂർണ്ണതയല്ല കലയുടെ പ്രധാന ലക്ഷ്യം."
+      },
+      {
+        q: "In 'Art as Social Work', Amy Morales Lara emphasizes the role of creative art in:",
+        q_ml: "'ആർട്ട് ആസ് സോഷ്യൽ വർക്ക്' എന്നതിൽ സർഗ്ഗാത്മക കലയുടെ ഏത് പങ്കിനാണ് പ്രാധാന്യം നൽകുന്നത്?",
+        options: [
+          { text: "Generating commercial profit for galleries", ml: "ഗ്യാലറികൾക്ക് ലാഭമുണ്ടാക്കൽ" },
+          { text: "Providing passive entertainment for audiences", ml: "വെറുമൊരു വിനോദം നൽകൽ" },
+          { text: "Facilitating emotional healing, empowerment, and liberation", ml: "മാനസിക രോഗശാന്തി, ശാക്തീകരണം, വിമോചനം എന്നിവ സാധ്യമാക്കൽ" },
+          { text: "Promoting partisan political propaganda", ml: "രാഷ്ട്രീയ പ്രചാരണം നടത്തൽ" }
+        ],
+        ans: 2,
+        hint: "Healing trauma, validating voice, and building personal resilience.",
+        hint_ml: "മാനസികമായ രോഗശാന്തിയും സ്വയം ശാക്തീകരണവും."
+      },
+      {
+        q: "How does Amy Morales Lara view the intersection of art and social work?",
+        q_ml: "കലയും സോഷ്യൽ വർക്കും തമ്മിലുള്ള ബന്ധത്തെ ഏമി എങ്ങനെ കാണുന്നു?",
+        options: [
+          { text: "As two unrelated, conflicting fields", ml: "ബന്ധമില്ലാത്ത രണ്ട് വിരുദ്ധ മേഖലകളായി" },
+          { text: "As a superficial way to monetize creative hobbies", ml: "ഹോബികൾ വിറ്റ് പണമുണ്ടാക്കാനുള്ള വഴിയായി" },
+          { text: "As a powerful tool for community building and emotional support", ml: "കമ്മ്യൂണിറ്റി രൂപീകരണത്തിനും വൈകാരിക പിന്തുണയ്ക്കുമുള്ള ശക്തമായ ഉപാധിയായി" },
+          { text: "As a replacement for all conventional healthcare", ml: "എല്ലാ ചികിത്സകൾക്കും പകരമുള്ള ഒന്നായി" }
+        ],
+        ans: 2,
+        hint: "A synergy that transforms community engagement and well-being.",
+        hint_ml: "സമൂഹത്തിന് കരുത്ത് പകരാനും വ്യക്തികൾക്ക് ആശ്വാസമേകാനും കഴിയുന്ന ഒരു കൂട്ടുകെട്ട്."
+      },
+      {
+        q: "How does Amy begin her TED Talk?",
+        q_ml: "ഏമി തന്റെ ടെഡ് ടോക്ക് ആരംഭിക്കുന്നത് എങ്ങനെയാണ്?",
+        options: [
+          { text: "By listing her academic awards and publications", ml: "തന്റെ അവാർഡുകൾ പട്ടികപ്പെടുത്തിക്കൊണ്ട്" },
+          { text: "By admitting that she felt lost and uncertain about her direction in life", ml: "ജീവിതത്തിന്റെ വഴിയിൽ തനിക്ക് ആശയക്കുഴപ്പവും വഴിമുട്ടലും തോന്നിയിരുന്നു എന്ന് തുറന്നുപറഞ്ഞ്" },
+          { text: "By quoting complex social welfare statistics", ml: "സ്ഥിതിവിവരക്കണക്കുകൾ ഉദ്ധരിച്ചുകൊണ്ട്" },
+          { text: "By performing an instrumental violin solo", ml: "വയലിൻ വായിച്ചുകൊണ്ട്" }
+        ],
+        ans: 1,
+        hint: "She opened with candid personal vulnerability about not knowing what to do.",
+        hint_ml: "ജീവിതത്തിൽ എങ്ങോട്ട് പോകണമെന്ന് അറിയാതെ നിന്ന അവസ്ഥയെ തുറന്നുപറഞ്ഞുകൊണ്ടാണ് തുടങ്ങിയത്."
+      },
+      {
+        q: "What two main questions does Amy ask herself at the start of her journey?",
+        q_ml: "തന്റെ യാത്രയുടെ തുടക്കത്തിൽ ഏമി സ്വയം ചോദിക്കുന്ന രണ്ട് പ്രധാന ചോദ്യങ്ങൾ ഏവ?",
+        options: [
+          { text: "How to earn maximum wealth and gain public fame", ml: "എങ്ങനെ കൂടുതൽ സമ്പത്തും പ്രശസ്തിയും നേടാം" },
+          { text: "Who to marry and where to buy property", ml: "ആരെ വിവാഹം കഴിക്കണം, എവിടെ സ്വത്ത് വാങ്ങണം" },
+          { text: "Who she wants to become and what she wants to do with her life", ml: "താൻ ആരായി മാറണം, ജീവിതത്തിൽ എന്ത് ചെയ്യണം എന്നത്" },
+          { text: "How to graduate early with highest honours", ml: "എങ്ങനെ വേഗത്തിൽ ബിരുദം നേടാം" }
+        ],
+        ans: 2,
+        hint: "Identity and life purpose were her fundamental inquiries.",
+        hint_ml: "തന്റെ വ്യക്തിത്വവും ലക്ഷ്യവും എന്തായിരിക്കണം എന്ന ചോദ്യങ്ങൾ."
+      },
+      {
+        q: "Who famously inspired Amy's foundational concept of being a 'helper'?",
+        q_ml: "'സഹായി' (helper) എന്ന ആശയത്തിന് ഏമിക്ക് പ്രചോദനമായത് ആരുടെ വാക്കുകളാണ്?",
+        options: [
+          { text: "Her undergraduate dean", ml: "കോളേജ് ഡീൻ" },
+          { text: "A famous pop musician", ml: "ഒരു പോപ്പ് സംഗീതജ്ഞൻ" },
+          { text: "Mr. Rogers", ml: "മിസ്റ്റർ റോജേഴ്സ് (Mr. Rogers)" },
+          { text: "Her high school guidance counselor", ml: "ഹൈസ്കൂൾ കൗൺസിലർ" }
+        ],
+        ans: 2,
+        hint: "Look for the helpers. You will always find people who are helping.",
+        hint_ml: "'എപ്പോഴും സഹായിക്കുന്ന ആളുകളെ കാണാൻ കഴിയും' എന്ന് പറഞ്ഞ മിസ്റ്റർ റോജേഴ്സ്."
+      },
+      {
+        q: "What central question drives Amy's TED Talk presentation?",
+        q_ml: "ഏമിയുടെ ടെഡ് ടോക്കിനെ നയിക്കുന്ന കേന്ദ്ര ചോദ്യം എന്താണ്?",
+        options: [
+          { text: "How to achieve commercial success as a full-time musician", ml: "സംഗീതജ്ഞയായി എങ്ങനെ പണമുണ്ടാക്കാം" },
+          { text: "How to relocate away from her hometown in the Bronx", ml: "ബ്രോങ്ക്സിൽ നിന്ന് എങ്ങനെ മാറിത്താമസിക്കാം" },
+          { text: "How to combine the compassion of social work with the power of creative arts", ml: "സോഷ്യൽ വർക്കിന്റെ കാരുണ്യത്തെ സർഗ്ഗാത്മക കലയുമായി എങ്ങനെ സംയോജിപ്പിക്കാം" },
+          { text: "How to secure funding for non-profit foundations", ml: "ഫണ്ടുകൾ എങ്ങനെ കണ്ടെത്താം" }
+        ],
+        ans: 2,
+        hint: "Bridging the empathy of social work with the therapeutic power of art.",
+        hint_ml: "കലയെയും സമൂഹ സേവനത്തെയും എങ്ങനെ ഒന്നിച്ചു കൊണ്ടുപോകാം."
+      },
+      {
+        q: "How does Amy define the professional discipline of social work?",
+        q_ml: "സോഷ്യൽ വർക്ക് എന്ന പ്രൊഫഷനെ ഏമി എങ്ങനെ നിർവചിക്കുന്നു?",
+        options: [
+          { text: "A commercial business enterprise", ml: "ഒരു വാണിജ്യ ബിസിനസ്സ് സംരംഭം" },
+          { text: "A practice-based discipline and profession promoting social change, problem-solving, and empowerment", ml: "സാമൂഹിക മാറ്റം, പ്രശ്നപരിഹാരം, ശാക്തീകരണം എന്നിവ പ്രോത്സാഹിപ്പിക്കുന്ന ഒരു പ്രായോഗിക തൊഴിൽ" },
+          { text: "An academic philosophy detached from community intervention", ml: "സമൂഹവുമായി ബന്ധമില്ലാത്ത ഒരു തത്വശാസ്ത്രം" },
+          { text: "A political party apparatus", ml: "ഒരു രാഷ്ട്രീയ പാർട്ടിയുടെ ഘടകം" }
+        ],
+        ans: 1,
+        hint: "A profession rooted in human rights, empowerment, and social change.",
+        hint_ml: "ജനങ്ങളുടെ ശാക്തീകരണത്തിനും വികസനത്തിനുമായി നിലകൊള്ളുന്ന സേവന മേഖല."
+      },
+      {
+        q: "How did songwriting and music help Amy on a personal level during difficult times?",
+        q_ml: "പ്രയാസകരമായ സമയങ്ങളിൽ ഗാനരചനയും സംഗീതവും ഏമിയെ വ്യക്തിപരമായി എങ്ങനെ സഹായിച്ചു?",
+        options: [
+          { text: "It brought immediate celebrity status and wealth", ml: "അത് പെട്ടെന്ന് പ്രശസ്തിയും സമ്പത്തും നൽകി" },
+          { text: "It helped her process trauma and challenge negative self-narratives", ml: "മാനസിക വിഷമങ്ങൾ മറികടക്കാനും നെഗറ്റീവ് ചിന്തകളെ വെല്ലുവിളിക്കാനും സഹായിച്ചു" },
+          { text: "It allowed her to avoid studying for college exams", ml: "പഠനത്തിൽ നിന്ന് ഒഴിഞ്ഞുനിൽക്കാൻ സഹായിച്ചു" },
+          { text: "It taught her formal legal defense strategies", ml: "നിയമതന്ത്രങ്ങൾ പഠിപ്പിച്ചു" }
+        ],
+        ans: 1,
+        hint: "Music served as therapeutic outlet to process painful emotions.",
+        hint_ml: "വിഷമഘട്ടങ്ങളിൽ മനസ്സിന് കരുത്തുപകരാൻ പാട്ടുകൾ തുണയായി."
+      },
+      {
+        q: "What empowering final message does Amy leave the audience with?",
+        q_ml: "ഏമി സദസ്സിന് നൽകുന്ന ശാക്തീകരണ സന്ദേശം എന്താണ്?",
+        options: [
+          { text: "Everyone must leave their career to become a fine artist", ml: "എല്ലാവരും ജോലി ഉപേക്ഷിച്ച് കലാകാരന്മാരാകണം" },
+          { text: "Only certified social workers have the capacity to help people", ml: "ബിരുദമുള്ളവർക്ക് മാത്രമേ മറ്റുള്ളവരെ സഹായിക്കാനാകൂ" },
+          { text: "Compassion, empathy, and curiosity allow all of us to be helpers in our communities", ml: "സഹാനുഭൂതിയും ജിജ്ഞാസയും നമ്മെ എല്ലാവരെയും സഹായികളാക്കാൻ പ്രാപ്തരാക്കുന്നു" },
+          { text: "True success means never experiencing doubt or feeling lost", ml: "സംശയങ്ങൾ ഒന്നുമില്ലാത്തതാണ് യഥാർത്ഥ വിജയം" }
+        ],
+        ans: 2,
+        hint: "You do not need a degree in social work to care for and help others.",
+        hint_ml: "സ്നേഹവും സഹാനുഭൂതിയുമുണ്ടെങ്കിൽ നമുക്കേവർക്കും ഒരു സഹായിയായി മാറാം."
+      },
+      {
+        q: "Speaking skills primarily refer to the ability to:",
+        q_ml: "സംസാരശേഷി (Speaking skills) എന്നത് പ്രധാനമായും എന്തിനുള്ള കഴിവിനെ സൂചിപ്പിക്കുന്നു?",
+        options: [
+          { text: "Describe macroeconomic fluctuations", ml: "സാമ്പത്തിക വ്യതിയാനങ്ങൾ വിവരിക്കാൻ" },
+          { text: "Speak loudly and assertively before an audience", ml: "ശ്രോതാക്കൾക്ക് മുന്നിൽ ഉച്ചത്തിൽ സംസാരിക്കാൻ" },
+          { text: "Express ideas clearly, fluently, and effectively through spoken language", ml: "ആശയങ്ങൾ വ്യക്തമായും ഒഴുക്കോടെയും ഫലപ്രദമായും സംസാരിച്ചു പ്രകടിപ്പിക്കാൻ" },
+          { text: "Memorize extensive lists of obscure vocabulary", ml: "കഠിനമായ വാക്കുകൾ കാണാതെ പഠിക്കാൻ" }
+        ],
+        ans: 2,
+        hint: "Clear, coherent verbal communication suited to the context.",
+        hint_ml: "ആശയങ്ങൾ വ്യക്തതയോടും സ്വാഭാവിക ഒഴുക്കോടും സംസാരിക്കാനുള്ള പ്രാവീണ്യം."
+      },
+      {
+        q: "Which of the following practices helps most in improving English pronunciation?",
+        q_ml: "ഇംഗ്ലീഷ് ഉച്ചാരണം മെച്ചപ്പെടുത്താൻ ഏറ്റവും കൂടുതൽ സഹായിക്കുന്ന രീതി ഏതാണ്?",
+        options: [
+          { text: "Writing long essays without reading them aloud", ml: "ഉച്ചത്തിൽ വായിക്കാതെ വലിയ ഉപന്യാസങ്ങൾ എഴുതുന്നത്" },
+          { text: "Active listening and imitating proficient, clear speakers", ml: "നന്നായി സംസാരിക്കുന്നവരെ ശ്രദ്ധിച്ചു കേൾക്കുകയും അനുകരിക്കുകയും ചെയ്യുന്നത്" },
+          { text: "Memorizing abstract grammatical formulae", ml: "വ്യാകരണ സൂത്രവാക്യങ്ങൾ കാണാതെ പഠിക്കുന്നത്" },
+          { text: "Silent speed-reading without articulation", ml: "ശബ്ദമുണ്ടാക്കാതെ വേഗത്തിൽ വായിക്കുന്നത്" }
+        ],
+        ans: 1,
+        hint: "Shadowing and listening to authentic spoken English.",
+        hint_ml: "ശ്രദ്ധയോടെ കേൾക്കലും അനുകരിച്ചു പരിശീലിക്കലുമാണ് ഉച്ചാരണം നന്നാക്കാനുള്ള വഴി."
+      },
+      {
+        q: "What does fluency in oral communication mean?",
+        q_ml: "സംഭാഷണത്തിലെ 'ഫ്ലുവെൻസി' (Fluency) എന്നാൽ എന്താണ് അർത്ഥമാക്കുന്നത്?",
+        options: [
+          { text: "Using sophisticated, complex vocabulary at all times", ml: "എപ്പോഴും കഠിനമായ വാക്കുകൾ ഉപയോഗിക്കുന്നത്" },
+          { text: "Speaking without making a single grammatical error", ml: "ഒരു വ്യാകരണ തെറ്റും കൂടാതെ സംസാരിക്കുന്നത്" },
+          { text: "Speaking smoothly and easily with natural pace and minimal hesitation", ml: "സ്വാഭാവികമായ വേഗതയിലും തടസ്സമില്ലാതെയും സുഗമമായി സംസാരിക്കുന്നത്" },
+          { text: "Speaking as rapidly as possible", ml: "സാധ്യമായത്ര വേഗത്തിൽ സംസാരിക്കുന്നത്" }
+        ],
+        ans: 2,
+        hint: "Smooth, continuous delivery at a natural conversational tempo.",
+        hint_ml: "തടസ്സങ്ങളില്ലാതെ സ്വാഭാവിക താളത്തിൽ കാര്യങ്ങൾ സംസാരിക്കൽ."
+      },
+      {
+        q: "Which factor ensures that the tone, register, and vocabulary chosen match the social situation and audience?",
+        q_ml: "സാമൂഹിക സാഹചര്യത്തിനും ശ്രോതാക്കൾക്കും അനുയോജ്യമായ ഭാഷാശൈലിയും പദങ്ങളും തിരഞ്ഞെടുക്കാൻ സഹായിക്കുന്ന ഘടകം ഏതാണ്?",
+        options: [
+          { text: "Vocabulary size", ml: "പദസമ്പത്തിന്റെ വലിപ്പം" },
+          { text: "Accent precision", ml: "ഉച്ചാരണ ശൈലി" },
+          { text: "Appropriateness (Sociolinguistic competence)", ml: "സാഹചര്യത്തിനനുസരിച്ചുള്ള അനുയോജ്യത (Appropriateness)" },
+          { text: "Vocal volume", ml: "ശബ്ദത്തിന്റെ തീവ്രത" }
+        ],
+        ans: 2,
+        hint: "Aligning linguistic style with social setting and audience expectations.",
+        hint_ml: "സാഹചര്യത്തിനനുയോജ്യമായ ഭാഷ ഉപയോഗിക്കാനുള്ള കഴിവ്."
+      },
+      {
+        q: "Organising thoughts before speaking mainly helps a speaker to:",
+        q_ml: "സംസാരിക്കുന്നതിന് മുമ്പ് ചിന്തകൾ ചിട്ടപ്പെടുത്തുന്നത് ഒരു പ്രാസംഗികനെ എങ്ങനെയാണ് സഹായിക്കുന്നത്?",
+        options: [
+          { text: "Increase speaking speed beyond normal tempo", ml: "സംസാരവേഗത സാധാരണയേക്കാൾ വർദ്ധിപ്പിക്കാൻ" },
+          { text: "Intimidate the listeners with complex syntax", ml: "കേൾവിക്കാരെ ഭയപ്പെടുത്താൻ" },
+          { text: "Provide clarity, coherence, and logical flow of ideas", ml: "ആശയങ്ങൾക്ക് വ്യക്തതയും പൊരുത്തവും കൃത്യമായ ഒഴുക്കും നൽകാൻ" },
+          { text: "Avoid every minor phonetic slip", ml: "ചെറിയ ഉച്ചാരണ പിഴവുകൾ പോലും ഒഴിവാക്കാൻ" }
+        ],
+        ans: 2,
+        hint: "Logical arrangement yields structured and convincing communication.",
+        hint_ml: "ആശയങ്ങളുടെ ഒഴുക്കും വ്യക്തതയും ഉറപ്പുവരുത്താൻ ഇത് സഹായിക്കുന്നു."
+      },
+      {
+        q: "What is the central theme of George Carlin's monologue 'Soft Language'?",
+        q_ml: "ജോർജ്ജ് കാർലിന്റെ 'സോഫ്റ്റ് ലാംഗ്വേജ്' എന്ന പ്രകടനത്തിന്റെ കേന്ദ്ര ആശയം എന്താണ്?",
+        options: [
+          { text: "The importance of learning foreign vocabulary", ml: "വിദേശ പദങ്ങൾ പഠിക്കേണ്ടതിന്റെ പ്രാധാന്യം" },
+          { text: "The grammatical evolution of Old English", ml: "പഴയ ഇംഗ്ലീഷിന്റെ വ്യാകരണപരമായ മാറ്റങ്ങൾ" },
+          { text: "The pervasive use of euphemisms to conceal harsh realities", ml: "കഠിനമായ യാഥാർത്ഥ്യങ്ങളെ മറച്ചുവെക്കാൻ മൃദുവായ പദങ്ങൾ (euphemisms) ഉപയോഗിക്കുന്നത്" },
+          { text: "The technical development of modern broadcast comedy", ml: "ആധുനിക കോമഡിയുടെ സാങ്കേതിക വികാസം" }
+        ],
+        ans: 2,
+        hint: "How sanitised corporate jargon obscures uncomfortable truths.",
+        hint_ml: "സത്യത്തെ മറച്ചുവെക്കാനും ഭംഗിവാക്കുകൾ പറയാനും വ്യാജ പദങ്ങൾ ഉപയോഗിക്കുന്നത്."
+      },
+      {
+        q: "According to Carlin, why do people and institutions resort to soft language?",
+        q_ml: "കാർലിന്റെ അഭിപ്രായത്തിൽ ആളുകളും സ്ഥാപനങ്ങളും 'സോഫ്റ്റ് ലാംഗ്വേജ്' ഉപയോഗിക്കുന്നത് എന്തിനാണ്?",
+        options: [
+          { text: "To ensure communication is strictly accurate", ml: "വാർത്തകൾ തികച്ചും കൃത്യമാണെന്ന് ഉറപ്പാക്കാൻ" },
+          { text: "To make painful or disturbing reality easier to face and conceal truth", ml: "വേദനാജനകമായ യാഥാർത്ഥ്യങ്ങളിൽ നിന്നുള്ള തീവ്രത കുറയ്ക്കാനും സത്യം മറയ്ക്കാനും" },
+          { text: "To improve linguistic rhythm and pronunciation", ml: "ഭാഷയുടെ താളം മെച്ചപ്പെടുത്താൻ" },
+          { text: "To prolong the duration of political discussions", ml: "ചർച്ചകൾ നീട്ടിക്കൊണ്ടുപോകാൻ" }
+        ],
+        ans: 1,
+        hint: "Euphemisms buffer psychological discomfort and sanitize cruelty.",
+        hint_ml: "വിഷമകരമായ യാഥാർത്ഥ്യങ്ങൾ നേരിടാനുള്ള ഭയം കൊണ്ടും കപടത കൊണ്ടും."
+      },
+      {
+        q: "What was the direct, visceral term used during World War I to describe severe psychological trauma experienced by soldiers?",
+        q_ml: "ഒന്നാം ലോകമഹായുദ്ധകാലത്ത് സൈനികർ അനുഭവിച്ച മാനസികാഘാതത്തെ വിശേഷിപ്പിക്കാൻ ഉപയോഗിച്ച നേരിട്ടുള്ള വാക്ക് ഏതാണ്?",
+        options: [
+          { text: "Battle Fatigue", ml: "ബാറ്റിൽ ഫറ്റീഗ്" },
+          { text: "Operational Exhaustion", ml: "ഓപ്പറേഷൻ എക്‌സോഷൻ" },
+          { text: "Post-Traumatic Stress Disorder", ml: "പി.ടി.എസ്.ഡി." },
+          { text: "Shell Shock", ml: "ഷെൽ ഷോക്ക് (Shell Shock)" }
+        ],
+        ans: 3,
+        hint: "Two syllables, stark, direct, and honest about bombs exploding.",
+        hint_ml: "ലളിതവും എന്നാൽ യുദ്ധക്കെടുതിയെ കൃത്യമായി കാണിക്കുന്നതുമായ പദം."
+      },
+      {
+        q: "Which sanitized term replaced 'Shell Shock' during World War II?",
+        q_ml: "രണ്ടാം ലോകമഹായുദ്ധത്തിൽ 'ഷെൽ ഷോക്ക്' എന്നതിന് പകരം വന്ന വാക്ക് ഏതാണ്?",
+        options: [
+          { text: "Post-Traumatic Stress Disorder", ml: "പി.ടി.എസ്.ഡി." },
+          { text: "Battle Fatigue", ml: "ബാറ്റിൽ ഫറ്റീഗ് (Battle Fatigue)" },
+          { text: "Operational Exhaustion", ml: "ഓപ്പറേഷൻ എക്‌സോഷൻ" },
+          { text: "Combat Disorder", ml: "കോംബാറ്റ് ഡിസോർഡർ" }
+        ],
+        ans: 1,
+        hint: "It made the condition sound like soldiers were simply tired.",
+        hint_ml: "ക്ഷീണം എന്ന രൂപത്തിലേക്ക് അതിനെ ലഘൂകരിച്ച വാക്ക്."
+      },
+      {
+        q: "According to Carlin, what happened to the clinical term describing combat trauma over generations?",
+        q_ml: "യുദ്ധക്കെടുതിയെ സൂചിപ്പിക്കുന്ന പദങ്ങൾക്ക് തലമുറകളിലൂടെ എന്ത് സംഭവിച്ചു എന്നാണ് കാർലിൻ പറയുന്നത്?",
+        options: [
+          { text: "It became simpler, more emotional, and shorter", ml: "അത് കൂടുതൽ ലളിതവും ചെറുതുമായി മാറി" },
+          { text: "It was completely abandoned by the military", ml: "സൈന്യം അത് പൂർണ്ണമായും ഉപേക്ഷിച്ചു" },
+          { text: "It became progressively longer, more technical, and detached from human suffering", ml: "അത് കൂടുതൽ നീളമേറിയതും സാങ്കേതികവും വേദനകളെ മറയ്ക്കുന്നതുമായി മാറി" },
+          { text: "It remained unchanged since the American Civil War", ml: "അതിൽ യാതൊരു മാറ്റവും വന്നിട്ടില്ല" }
+        ],
+        ans: 2,
+        hint: "From two syllables (Shell Shock) to eight syllables (Post-Traumatic Stress Disorder).",
+        hint_ml: "വേദനകളെ മറച്ചുവെക്കുന്ന നീണ്ട സാങ്കേതിക പദമായി അത് രൂപാന്തരപ്പെട്ടു."
+      },
+      {
+        q: "What does Carlin suggest about euphemistic language in everyday life?",
+        q_ml: "ദൈനംദിന ജീവിതത്തിലെ 'യൂഫമിസങ്ങൾ' (Euphemisms) സംബന്ധിച്ച് കാർലിൻ പറയുന്നത് എന്താണ്?",
+        options: [
+          { text: "It makes communication clear and honest", ml: "അത് ആശയവിനിമയം വ്യക്തവും സത്യസന്ധവുമാക്കുന്നു" },
+          { text: "It enhances genuine emotional connection", ml: "യഥാർത്ഥ വികാരങ്ങൾ കൂടുതൽ ദൃഢമാക്കുന്നു" },
+          { text: "It robs language of life and hides uncomfortable truths behind sterile jargon", ml: "അത് ഭാഷയുടെ ജീവൻ നഷ്ടപ്പെടുത്തുകയും പരുക്കൻ സത്യങ്ങളെ മറച്ചുവെക്കുകയും ചെയ്യുന്നു" },
+          { text: "It prevents misunderstandings among foreign speakers", ml: "തെറ്റിദ്ധാരണകൾ ഇല്ലാതാക്കുന്നു" }
+        ],
+        ans: 2,
+        hint: "It conceals life and strips words of visceral vitality.",
+        hint_ml: "സത്യത്തിൽ നിന്ന് ഒളിച്ചോടാൻ അർത്ഥശൂന്യമായ പദങ്ങൾ ഉപയോഗിക്കുന്നത് ജീവനില്ലാത്ത ഭാഷയെ സൃഷ്ടിക്കുന്നു."
+      },
+      {
+        q: "Which literary technique is most prominent throughout Carlin's stand-up performance?",
+        q_ml: "കാർലിന്റെ ഈ സ്റ്റാൻഡ്-അപ്പ് പരിപാടിയിൽ ഏറ്റവും തെളിഞ്ഞുനിൽക്കുന്ന സാഹിത്യ ശൈലി ഏതാണ്?",
+        options: [
+          { text: "Romantic Imagery and pastoral lyricism", ml: "റൊമാന്റിക് കാവ്യഭംഗി" },
+          { text: "Satire, irony, and sharp social commentary", ml: "ആക്ഷേപഹാസ്യം, വിരോധാഭാസം, മൂർച്ചയുള്ള വിമർശനം" },
+          { text: "Epic verse narration", ml: "മഹാകാവ്യ ശൈലിയിലുള്ള വിവരണം" },
+          { text: "Allegorical symbolism", ml: "രൂപകാത്മക പ്രതീകങ്ങൾ" }
+        ],
+        ans: 1,
+        hint: "Biting societal humor targeting institutional deceit.",
+        hint_ml: "സമൂഹത്തിലെ കാപട്യങ്ങളെ തുറന്നുകാട്ടുന്ന മൂർച്ചയേറിയ ആക്ഷേപഹാസ്യം."
+      },
+      {
+        q: "What broader philosophical message does Carlin convey through his critique?",
+        q_ml: "തന്റെ വിമർശനത്തിലൂടെ കാർലിൻ നൽകുന്ന വിശാലമായ തത്ത്വചിന്താപരമായ സന്ദേശം എന്താണ്?",
+        options: [
+          { text: "Language has zero tangible influence over human thoughts", ml: "ഭാഷയ്ക്ക് മനുഷ്യ ചിന്തകളിൽ സ്വാധീനമില്ല" },
+          { text: "Comedians should refrain from discussing serious social concerns", ml: "ഹാസ്യനടന്മാർ ഗൗരവമുള്ള കാര്യങ്ങൾ സംസാരിക്കരുത്" },
+          { text: "The words we use shape how we perceive, rationalize, and accept reality", ml: "നാം ഉപയോഗിക്കുന്ന വാക്കുകളാണ് യാഥാർത്ഥ്യത്തെ നാം എങ്ങനെ കാണുന്നു എന്ന് നിശ്ചയിക്കുന്നത്" },
+          { text: "Bureaucratic jargon is superior to simple speech", ml: "ഔദ്യോഗിക പദങ്ങളാണ് സാധാരണ സംസാരത്തേക്കാൾ നല്ലത്" }
+        ],
+        ans: 2,
+        hint: "Sanitized words lead to sanitized, uncritical minds.",
+        hint_ml: "വാക്കുകൾക്ക് നമ്മുടെ ചിന്തകളെയും ബോധത്തെയും സ്വാധീനിക്കാനുള്ള വലിയ ശക്തിയുണ്ട്."
+      },
+      {
+        q: "What major historical event significantly influenced Arthur Miller's understanding of economic society and shaped his dramatic works?",
+        q_ml: "ആർതർ മില്ലറുടെ ചിന്തകളെയും നാടകങ്ങളെയും കാര്യമായി സ്വാധീനിച്ച പ്രധാന ചരിത്ര സംഭവം ഏതാണ്?",
+        options: [
+          { text: "The First World War", ml: "ഒന്നാം ലോകമഹായുദ്ധം" },
+          { text: "The American Civil War", ml: "അമേരിക്കൻ ആഭ്യന്തര യുദ്ധം" },
+          { text: "The Great Depression", ml: "മഹാമാന്ദ്യം (The Great Depression)" },
+          { text: "The Cold War", ml: "ശീതയുദ്ധം" }
+        ],
+        ans: 2,
+        hint: "The 1929 stock market crash wrecked his family's prosperous lifestyle.",
+        hint_ml: "1929-ലെ സാമ്പത്തിക തകർച്ച അദ്ദേഹത്തിന്റെ കുടുംബത്തെയും സമൂഹത്തെയും സാരമായി ബാധിച്ചു."
+      },
+      {
+        q: "Which play established Arthur Miller's international reputation and won both the Pulitzer Prize and the Tony Award?",
+        q_ml: "ആർതർ മില്ലർക്ക് അന്താരാഷ്ട്ര പ്രശസ്തിയും പുലിറ്റ്സർ പ്രൈസും ടോണി അവാർഡും നേടിക്കൊടുത്ത നാടകം ഏതാണ്?",
+        options: [
+          { text: "The Crucible", ml: "ദി ക്രൂസിബിൾ" },
+          { text: "All My Sons", ml: "ഓൾ മൈ സൺസ്" },
+          { text: "A View from the Bridge", ml: "എ വ്യൂ ഫ്രം ദി ബ്രിഡ്ജ്" },
+          { text: "Death of a Salesman", ml: "ഡെത്ത് ഓഫ് എ സെയിൽസ്മാൻ (Death of a Salesman)" }
+        ],
+        ans: 3,
+        hint: "The American tragic masterpiece centered on Willy Loman.",
+        hint_ml: "വില്ലി ലോമാൻ കേന്ദ്രകഥാപാത്രമായ ലോകപ്രശസ്ത നാടകം."
+      },
+      {
+        q: "Who was the primary personal inspiration for the character of Willy Loman?",
+        q_ml: "വില്ലി ലോമാൻ എന്ന കഥാപാത്രത്തിന് മില്ലറുടെ ജീവിതത്തിൽ പ്രചോദനമായ വ്യക്തി ആരാണ്?",
+        options: [
+          { text: "Arthur Miller's father, Isidore Miller", ml: "ആർതർ മില്ലറുടെ പിതാവ് ഐസിഡോർ മില്ലർ" },
+          { text: "Arthur Miller's older brother, Kermit", ml: "സഹോദരൻ കെർമിറ്റ്" },
+          { text: "Arthur Miller's uncle, Manny Newman", ml: "ആർതർ മില്ലറുടെ അമ്മാവൻ മാനി ന്യൂമാൻ" },
+          { text: "Miller's university drama professor", ml: "യൂണിവേഴ്സിറ്റി പ്രൊഫസർ" }
+        ],
+        ans: 2,
+        hint: "A traveling salesman relative who was constantly competitive about his sons.",
+        hint_ml: "സദാ മത്സരബുദ്ധിയോടെ സംസാരിച്ചിരുന്ന അദ്ദേഹത്തിന്റെ അമ്മാവൻ."
+      },
+      {
+        q: "Which core theme is most central to the tragedy of Death of a Salesman?",
+        q_ml: "'ഡെത്ത് ഓഫ് എ സെയിൽസ്മാൻ' എന്ന നാടകത്തിന്റെ കേന്ദ്ര പ്രമേയം എന്താണ്?",
+        options: [
+          { text: "Colonial rivalry and nationalistic fervor", ml: "കൊളോണിയൽ തർക്കങ്ങളും ദേശീയതയും" },
+          { text: "The illusory promises and destructive pressures of the American Dream", ml: "അമേരിക്കൻ സ്വപ്നത്തിന്റെ പൊള്ളയായ വാഗ്ദാനങ്ങളും അതിന്റെ സമ്മർദ്ദങ്ങളും" },
+          { text: "Military heroism and battlefield valor", ml: "സൈനിക വീര്യവും യുദ്ധവും" },
+          { text: "Technological optimism and industrial automation", ml: "സാങ്കേതിക പുരോഗതി" }
+        ],
+        ans: 1,
+        hint: "The false belief that superficial charisma and popularity guarantee financial fulfillment.",
+        hint_ml: "പ്രശസ്തിയും പണവും മാത്രമാണ് വിജയമെന്ന വ്യാമോഹം മനുഷ്യനെ തകർക്കുന്ന കാഴ്ച."
+      },
+      {
+        q: "Why does Biff lose his childhood admiration and respect for his father, Willy?",
+        q_ml: "ബിഫിന് പിതാവായ വില്ലിയോടുള്ള ബഹുമാനം നഷ്ടപ്പെടാൻ കാരണമെന്താണ്?",
+        options: [
+          { text: "Willy is demoted and loses his sales commission", ml: "വില്ലിക്ക് കമ്മീഷൻ നഷ്ടപ്പെടുന്നു" },
+          { text: "Willy refuses to lend him money for a sporting goods store", ml: "ബിസിനസ്സിന് പണം നൽകാൻ വിസമ്മതിക്കുന്നു" },
+          { text: "Biff catches Willy having an extramarital affair in a Boston hotel room", ml: "ബോസ്റ്റണിലെ ഹോട്ടൽ മുറിയിൽ വില്ലിയുടെ പരസ്ത്രീ ബന്ധം ബിഫ് നേരിൽ കാണുന്നു" },
+          { text: "Willy forces him to leave high school without graduating", ml: "പഠനം നിർത്താൻ നിർബന്ധിക്കുന്നു" }
+        ],
+        ans: 2,
+        hint: "The discovery of The Woman in Boston shattered Biff's idolization of Willy.",
+        hint_ml: "ബോസ്റ്റൺ ഹോട്ടലിൽ വെച്ച് പിതാവിന്റെ കാപട്യം ബിഫ് തിരിച്ചറിയുന്നു."
+      },
+      {
+        q: "What does the surrounding urban transformation of Willy's neighbourhood symbolize in the play?",
+        q_ml: "വില്ലിയുടെ വീടിന് ചുറ്റുമുള്ള നഗരവൽക്കരണം നാടകത്തിൽ എന്തിനെയാണ് പ്രതീകവൽക്കരിക്കുന്നത്?",
+        options: [
+          { text: "Rising economic equality and civic pride", ml: "സാമ്പത്തിക സമത്വവും അഭിമാനവും" },
+          { text: "The triumph of democratic urban planning", ml: "നഗരാസൂത്രണത്തിന്റെ വിജയം" },
+          { text: "The claustrophobic loss of personal freedom, security, and connection to nature", ml: "വ്യക്തിസ്വാതന്ത്ര്യത്തിന്റെയും പ്രകൃതിയുമായുള്ള ബന്ധത്തിന്റെയും ശ്വാസംമുട്ടിക്കുന്ന നഷ്ടം" },
+          { text: "Abundant entrepreneurial opportunities for youth", ml: "യുവജനങ്ങൾക്കുള്ള വലിയ തൊഴിലവസരങ്ങൾ" }
+        ],
+        ans: 2,
+        hint: "Tall apartment buildings towering over his small house block out the sun and garden.",
+        hint_ml: "സൂര്യപ്രകാശവും ചെടികളും പോലും മറച്ചുകൊണ്ട് ഉയർന്നുവരുന്ന കോൺക്രീറ്റ് കാടുകൾ നൽകുന്ന ഒറ്റപ്പെടൽ."
+      },
+      {
+        q: "In the opening of the play, what serious problem causes Willy to return home unexpectedly from his sales road trip?",
+        q_ml: "നാടകത്തിന്റെ തുടക്കത്തിൽ, വിൽപ്പന യാത്രയിൽ നിന്ന് അപ്രതീക്ഷിതമായി വില്ലി വീട്ടിലേക്ക് തിരിച്ചെത്താൻ കാരണം എന്താണ്?",
+        options: [
+          { text: "His primary business client cancelled the sales agreement", ml: "പ്രധാന ഉപഭോക്താവ് കരാർ റദ്ദാക്കി" },
+          { text: "His car suffered a catastrophic engine failure on the highway", ml: "കാറിന്റെ എൻജിൻ തകരാറിലായി" },
+          { text: "He suffers mental exhaustion, loses driving concentration, and repeatedly swerves off the road", ml: "മാനസിക ക്ഷീണം കാരണം ശ്രദ്ധ നഷ്ടപ്പെടുകയും വാഹനം റോഡിൽ നിന്ന് തെന്നിമാറുകയും ചെയ്തതിനാൽ" },
+          { text: "He receives urgent telegrams concerning a domestic emergency", ml: "വീട്ടിൽ നിന്നുള്ള അടിയന്തിര സന്ദേശം ലഭിച്ചതിനാൽ" }
+        ],
+        ans: 2,
+        hint: "His wandering daydreaming and mental exhaustion made driving dangerous.",
+        hint_ml: "ഡ്രൈവിംഗിൽ ശ്രദ്ധ കേന്ദ്രീകരിക്കാൻ കഴിയാത്ത വിധം മനസ്സ് കൈവിട്ടുപോകുന്നത്."
+      },
+      {
+        q: "Who is the charismatic teacher conducting the unorthodox English literature lesson in the 'Rip It Out' scene?",
+        q_ml: "'റിപ്പ് ഇറ്റ് ഔട്ട്' രംഗത്തിൽ പരമ്പരാഗതമല്ലാത്ത രീതിയിൽ സാഹിത്യം പഠിപ്പിക്കുന്ന അധ്യാപകൻ ആരാണ്?",
+        options: [
+          { text: "Dr. J. Evans Pritchard", ml: "ഡോ. ജെ. ഇവാൻ പ്രിച്ചാർഡ്" },
+          { text: "Mr. McAllister", ml: "മിസ്റ്റർ മക്അലിസ്റ്റർ" },
+          { text: "John Keating", ml: "ജോൺ കീറ്റിംഗ് (John Keating)" },
+          { text: "Headmaster Nolan", ml: "ഹെഡ്മാസ്റ്റർ നോളൻ" }
+        ],
+        ans: 2,
+        hint: "Played famously by Robin Williams in Dead Poets Society.",
+        hint_ml: "ഡെഡ് പോയറ്റ്സ് സൊസൈറ്റിയിലെ പ്രശസ്തനായ ഇംഗ്ലീഷ് അധ്യാപകൻ."
+      },
+      {
+        q: "What does Dr. J. Evans Pritchard's essay attempt to do to literary appreciation?",
+        q_ml: "ഡോ. ജെ. ഇവാൻ പ്രിച്ചാർഡിന്റെ പ്രബന്ധം സാഹിത്യത്തെ എങ്ങനെയളക്കാനാണ് ശ്രമിക്കുന്നത്?",
+        options: [
+          { text: "Encourage students to write original verses based on emotional experiences", ml: "സ്വന്തം അനുഭവങ്ങളിൽ നിന്ന് കവിതകൾ എഴുതാൻ പ്രേരിപ്പിക്കുക" },
+          { text: "Measure the greatness of poetry mathematically using Cartesian coordinate graphs and formulas", ml: "സൂത്രവാക്യങ്ങളും ഗ്രാഫുകളും ഉപയോഗിച്ച് കവിതയുടെ മഹത്വം ഗണിതശാസ്ത്രപരമായി അളക്കുക" },
+          { text: "Examine historical biographies of Elizabethan playwrights", ml: "നാടകകൃത്തുക്കളുടെ ജീവചരിത്രം പരിശോധിക്കുക" },
+          { text: "Translate classic poems into modern conversational English", ml: "ക്ലാസിക് കവിതകൾ ലളിതമാക്കുക" }
+        ],
+        ans: 1,
+        hint: "Plotting poetic importance on a mathematical scale.",
+        hint_ml: "കവിതയുടെ സൗന്ദര്യത്തെ കണക്കുകൂട്ടലുകൾ കൊണ്ട് അളക്കാനുള്ള വിഫലശ്രമം."
+      },
+      {
+        q: "Why does Mr. Keating command his students to physically tear out the introduction of their poetry textbook?",
+        q_ml: "പാഠപുസ്തകത്തിന്റെ ആമുഖ താളുകൾ കീറിക്കളയാൻ മിസ്റ്റർ കീറ്റിംഗ് ആവശ്യപ്പെടുന്നത് എന്തുകൊണ്ടാണ്?",
+        options: [
+          { text: "Because the publisher had printed typographical errors", ml: "അച്ചടിപ്പിഴവുകൾ ഉള്ളതിനാൽ" },
+          { text: "Because he dislikes American textbooks in favor of British editions", ml: "ബ്രിട്ടീഷ് പുസ്തകങ്ങളോടുള്ള താൽപര്യം കൊണ്ട്" },
+          { text: "Because he rejects the artificial, mechanical reduction of artistic passion into mathematical formulas", ml: "കലാപരമായ വികാരങ്ങളെ ഗണിത സമവാക്യങ്ങളിലേക്ക് ഒതുക്കുന്നതിനെ അദ്ദേഹം എതിർക്കുന്നതിനാൽ" },
+          { text: "Because the school administration had banned the book", ml: "സ്കൂൾ അധികൃതർ പുസ്തകം നിരോധിച്ചതിനാൽ" }
+        ],
+        ans: 2,
+        hint: "Poetry cannot be calculated like engineering specifications.",
+        hint_ml: "കവിത മനസ്സ് കൊണ്ട് തൊട്ടറിയേണ്ടതാണ്, അളവുകോലുകൾ വെച്ച് അളക്കേണ്ടതല്ല."
+      },
+      {
+        q: "According to Mr. Keating, what is the profound reason human beings read and write poetry?",
+        q_ml: "മിസ്റ്റർ കീറ്റിംഗിന്റെ അഭിപ്രായത്തിൽ മനുഷ്യർ കവിത വായിക്കുകയും എഴുതുകയും ചെയ്യുന്നതിന്റെ ആഴത്തിലുള്ള കാരണം എന്താണ്?",
+        options: [
+          { text: "To achieve high marks on academic college entrance tests", ml: "പരീക്ഷകളിൽ ഉയർന്ന മാർക്ക് നേടാൻ" },
+          { text: "To prepare for pragmatic professions like law, banking, and medicine", ml: "ബാങ്കിംഗ്, നിയമം തുടങ്ങിയ ജോലികൾക്ക് ഒരുങ്ങാൻ" },
+          { text: "Because we are members of the human race, filled with passion, and poetry sustains the human soul", ml: "നാം വികാരങ്ങളുള്ള മനുഷ്യരായതിനാലും കവിത ആത്മാവിനെ നിലനിർത്തുന്നതിനാലും" },
+          { text: "Because rhyming verse is simpler to memorize than prose", ml: "മനഃപാഠമാക്കാൻ എളുപ്പമായതിനാൽ" }
+        ],
+        ans: 2,
+        hint: "Medicine, law, and business are noble pursuits, but poetry, beauty, romance, and love are what we stay alive for.",
+        hint_ml: "നമ്മുടെ വികാരങ്ങളും ജീവനും നിലനിർത്തുന്നത് പ്രണയവും സൗന്ദര്യവും കവിതയുമാണ്."
+      },
+      {
+        q: "Which visionary poet does Mr. Keating quote when delivering his powerful speech about the 'powerful play' of life?",
+        q_ml: "ജീവിതമെന്ന നാടകത്തെക്കുറിച്ച് സംസാരിക്കുമ്പോൾ കീറ്റിംഗ് ഉദ്ധരിക്കുന്ന ദാർശനികനായ കവി ആരാണ്?",
+        options: [
+          { text: "Lord Byron", ml: "ലോർഡ് ബൈറൺ" },
+          { text: "William Shakespeare", ml: "വില്യം ഷേക്സ്പിയർ" },
+          { text: "Walt Whitman", ml: "വാൾട്ട് വിറ്റ്മാൻ (Walt Whitman)" },
+          { text: "Robert Frost", ml: "റോബർട്ട് ഫ്രോസ്റ്റ്" }
+        ],
+        ans: 2,
+        hint: "'O Me! O Life!' by America's poet of Leaves of Grass.",
+        hint_ml: "'ഓ മി! ഓ ലൈഫ്!' എന്ന കവിത എഴുതിയ പ്രശസ്ത കവി."
+      },
+      {
+        q: "What does Mr. Keating mean when he asks his students: 'What will your verse be?'",
+        q_ml: "'നിങ്ങളുടെ വരി എന്തായിരിക്കും?' എന്ന് കീറ്റിംഗ് ചോദിക്കുമ്പോൾ അദ്ദേഹം എന്താണ് ഉദ്ദേശിക്കുന്നത്?",
+        options: [
+          { text: "He wants them to recite a poem for their midterm assessment", ml: "പരീക്ഷയ്ക്ക് ഒരു കവിത ചൊല്ലാൻ" },
+          { text: "He challenges them to discover their purpose and make their own unique, meaningful contribution to the world", ml: "സ്വന്തം ലക്ഷ്യം കണ്ടെത്താനും ലോകത്തിന് അർത്ഥവത്തായ സംഭാവന നൽകാനും വെല്ലുവിളിക്കുന്നു" },
+          { text: "He demands that every pupil become a published writer", ml: "എല്ലാവരും എഴുത്തുകാരാകാൻ ആവശ്യപ്പെടുന്നു" },
+          { text: "He asks them to choose a favourite classical stanza", ml: "ഇഷ്ടപ്പെട്ട വരികൾ തിരഞ്ഞെടുക്കാൻ ആവശ്യപ്പെടുന്നു" }
+        ],
+        ans: 1,
+        hint: "Contributing your unique creative imprint to the unfolding drama of life.",
+        hint_ml: "ജീവിതത്തിൽ സ്വന്തമായ ഒരു അടയാളവും സംഭാവനയും നൽകുക."
+      },
+      {
+        q: "Why is the 'Rip It Out' lesson included in the undergraduate English literature curriculum?",
+        q_ml: "ബിരുദ തലത്തിലെ ഇംഗ്ലീഷ് പാഠ്യപദ്ധതിയിൽ 'റിപ്പ് ഇറ്റ് ഔട്ട്' എന്ന പാഠഭാഗം ഉൾപ്പെടുത്തിയത് എന്തിനാണ്?",
+        options: [
+          { text: "To teach destructive behavior toward physical library books", ml: "പുസ്തകങ്ങൾ നശിപ്പിക്കാൻ പഠിപ്പിക്കാൻ" },
+          { text: "To train students in memorizing standard exam summaries", ml: "പരീക്ഷാ സംഗ്രഹങ്ങൾ കാണാതെ പഠിപ്പിക്കാൻ" },
+          { text: "To encourage critical inquiry, deep aesthetic appreciation, and independent thinking", ml: "വിമർശനാത്മക ചിന്ത, സൗന്ദര്യബോധം, സ്വതന്ത്ര ചിന്ത എന്നിവ വളർത്താൻ" },
+          { text: "To review the commercial box-office history of Hollywood cinema", ml: "സിനിമയുടെ സാമ്പത്തിക വിജയം പഠിക്കാൻ" }
+        ],
+        ans: 2,
+        hint: "Breaking away from blind conformity to think critically and authentically.",
+        hint_ml: "യാഥാസ്ഥിതിക ചിന്തകളിൽ നിന്ന് മാറി ചിന്തിക്കാനും ആസ്വാദന ശേഷി വളർത്താനും."
+      },
+      {
+        q: "What fundamental dynamic makes Keating's classroom scene revolutionary within the school?",
+        q_ml: "കീറ്റിംഗിന്റെ ക്ലാസ്സ് മുറിയെ ആ വിദ്യാലയത്തിൽ വിപ്ലവകരമാക്കുന്നത് എന്താണ്?",
+        options: [
+          { text: "Enforcing stricter disciplinary punishments", ml: "കർശനമായ ശിക്ഷകൾ നടപ്പിലാക്കൽ" },
+          { text: "Promoting questioning of dogma, free expression, and intellectual autonomy", ml: "അന്ധമായ ചിട്ടകളെ ചോദ്യം ചെയ്യലും സ്വതന്ത്രമായ ചിന്തയും പ്രോത്സാഹിപ്പിക്കൽ" },
+          { text: "Replacing literature classes with physical athletics", ml: "സാഹിത്യത്തിന് പകരം കായികാഭ്യാസം കൊണ്ടുവരൽ" },
+          { text: "Following traditional rote learning paradigms", ml: "പഴയ മനഃപാഠ രീതികൾ പിന്തുടരൽ" }
+        ],
+        ans: 1,
+        hint: "Encouraging young minds to think for themselves rather than passively accept rules.",
+        hint_ml: "അടിച്ചേൽപ്പിക്കലുകൾക്ക് വഴങ്ങാതെ സ്വതന്ത്രമായി ചിന്തിക്കാൻ കുട്ടികളെ പഠിപ്പിക്കുന്നു."
+      },
+      {
+        q: "How is Welton Academy depicted in the film?",
+        q_ml: "വെൽട്ടൺ അക്കാദമിയെ സിനിമയിൽ എങ്ങനെയാണ് ചിത്രീകരിച്ചിരിക്കുന്നത്?",
+        options: [
+          { text: "A progressive, student-led democratic school", ml: "ഒരു പുരോഗമന ജനാധിപത്യ സ്കൂൾ" },
+          { text: "A rigid, deeply conservative institution governed by tradition, honour, discipline, and obedience", ml: "പാരമ്പര്യം, അച്ചടക്കം, അനുസരണ എന്നിവയിൽ അധിഷ്ഠിതമായ യാഥാസ്ഥിതിക സ്ഥാപനം" },
+          { text: "An informal community arts center", ml: "ഒരു സാംസ്കാരിക കേന്ദ്രം" },
+          { text: "A vocational technical college without academic requirements", ml: "ഒരു സാങ്കേതിക വിദ്യാലയം" }
+        ],
+        ans: 1,
+        hint: "Tradition, Honor, Discipline, and Excellence.",
+        hint_ml: "യാഥാസ്ഥിതിക മൂല്യങ്ങളിൽ മുറുകെപ്പിടിക്കുന്ന കർക്കശമായ സ്കൂൾ."
+      },
+      {
+        q: "What is Mr. Keating's core critique of traditional, formulaic poetry pedagogy?",
+        q_ml: "പരമ്പരാഗതമായി കവിത പഠിപ്പിക്കുന്ന രീതിക്കെതിരെ കീറ്റിംഗ് ഉന്നയിക്കുന്ന പ്രധാന വിമർശനം എന്താണ്?",
+        options: [
+          { text: "That students should read poetry strictly for grammar drills", ml: "വ്യാകരണം പഠിക്കാൻ മാത്രം കവിത വായിക്കണം എന്നത്" },
+          { text: "That poetry must be felt, experienced, and tasted rather than mechanically dissected", ml: "കവിത യാന്ത്രികമായി അളക്കേണ്ടതല്ല, മറിച്ച് അനുഭവിച്ചറിയേണ്ടതാണ് എന്നത്" },
+          { text: "That metric rhyming schemes are superior to free verse", ml: "വൃത്തത്തിലുള്ള കവിതകളാണ് നല്ലത് എന്നത്" },
+          { text: "That literature cannot convey philosophical truths", ml: "സാഹിത്യത്തിന് സത്യങ്ങൾ പറയാനാവില്ല എന്നത്" }
+        ],
+        ans: 1,
+        hint: "Poetry is an organic human passion, not a mechanical graphing exercise.",
+        hint_ml: "കവിത എന്നത് അനുഭവിച്ചറിയേണ്ട വികാരമാണ്, ഗണിതശാസ്ത്രമല്ല."
+      },
+      {
+        q: "In the classroom, the act of tearing out the textbook's introductory essay symbolizes:",
+        q_ml: "ക്ലാസ്സ് മുറിയിൽ പുസ്തകത്തിന്റെ ആമുഖം കീറിക്കളയുന്നത് എന്തിന്റെ പ്രതീകമാണ്?",
+        options: [
+          { text: "Disrespect for authors and literature", ml: "എഴുത്തുകാരോടുള്ള അനാദരവ്" },
+          { text: "The decisive rejection of mechanical conformism, rigid dogma, and intellectual fear", ml: "യാന്ത്രികമായ അനുസരണ, കടുംപിടുത്തങ്ങൾ, ഭയം എന്നിവയുടെ തിരസ്കരണം" },
+          { text: "Obedience to administrative instructions", ml: "സ്കൂൾ നിയമങ്ങൾ അനുസരിക്കൽ" },
+          { text: "A simple exercise in classroom humor", ml: "വെറുമൊരു തമാശ" }
+        ],
+        ans: 1,
+        hint: "An act of liberation from stale dogmatism.",
+        hint_ml: "ചിന്തകളെ തളച്ചിടുന്ന വ്യവസ്ഥിതികളിൽ നിന്നുള്ള വിമോചനം."
+      },
+      {
+        q: "\"The Second Coming\" was written by W. B. Yeats in the immediate aftermath of which global catastrophe?",
+        q_ml: "ഏത് വലിയ ദുരന്തത്തിന് തൊട്ടുപിന്നാലെയാണ് ഡബ്ല്യു. ബി. യേറ്റ്സ് 'ദി സെക്കൻഡ് കമിംഗ്' എഴുതിയത്?",
+        options: [
+          { text: "The French Revolution", ml: "ഫ്രഞ്ച് വിപ്ലവം" },
+          { text: "The First World War", ml: "ഒന്നാം ലോകമഹായുദ്ധം (The First World War)" },
+          { text: "The Second World War", ml: "രണ്ടാം ലോകമഹായുദ്ധം" },
+          { text: "The Irish Potato Famine", ml: "ഐറിഷ് ക്ഷാമം" }
+        ],
+        ans: 1,
+        hint: "Written in January 1919 right after the end of WWI.",
+        hint_ml: "1919-ൽ ഒന്നാം ലോകമഹായുദ്ധത്തിന്റെ കെടുതികൾക്ക് തൊട്ടുപിന്നാലെയാണ് ഇത് രചിക്കപ്പെട്ടത്."
+      },
+      {
+        q: "In the opening stanza of the poem, what does the 'falcon' that cannot hear the falconer primarily symbolize?",
+        q_ml: "കവിതയുടെ തുടക്കത്തിൽ, പാപ്പാനെ അനുസരിക്കാത്ത 'പരുന്ത്' (falcon) എന്തിന്റെ പ്രതീകമാണ്?",
+        options: [
+          { text: "Untamed wild nature", ml: "നിയന്ത്രണമില്ലാത്ത വന്യപ്രകൃതി" },
+          { text: "Humanity or human intellect breaking away from moral control and spiritual guidance", ml: "ധാർമ്മികതയുടെയും ആത്മീയതയുടെയും നിയന്ത്രണം നഷ്ടപ്പെട്ട മനുഷ്യവംശം" },
+          { text: "The Christian church hierarchy", ml: "ക്രൈസ്തവ സഭാ നേതൃത്വം" },
+          { text: "The isolated voice of the poet", ml: "കവിയുടെ ഒറ്റപ്പെട്ട ശബ്ദം" }
+        ],
+        ans: 1,
+        hint: "Man spiraling out of control, severed from spiritual order and reason.",
+        hint_ml: "ധാർമ്മിക നിയന്ത്രണങ്ങളിൽ നിന്ന് വ്യതിചലിച്ച ആധുനിക മനുഷ്യൻ."
+      },
+      {
+        q: "What terrifying historical reality does the iconic line \"Things fall apart; the centre cannot hold\" suggest?",
+        q_ml: "\"കാര്യങ്ങൾ തകിടംമറിയുന്നു, കേന്ദ്രത്തിന് നിയന്ത്രിക്കാനാകുന്നില്ല\" എന്ന വരി സൂചിപ്പിക്കുന്നത് എന്താണ്?",
+        options: [
+          { text: "Society is steadily uniting towards lasting world peace", ml: "സമൂഹം ശാശ്വതമായ സമാധാനത്തിലേക്ക് നീങ്ങുന്നു" },
+          { text: "Civilization is disintegrating into moral chaos, anarchy, and political collapse", ml: "സംസ്കാരം അരാജകത്വത്തിലേക്കും തകർച്ചയിലേക്കും കൂപ്പുകുത്തുന്നു" },
+          { text: "Nature is peacefully regenerating after warfare", ml: "യുദ്ധത്തിന് ശേഷം പ്രകൃതി സ്വയം സുഖപ്പെടുന്നു" },
+          { text: "Traditional monarchies are consolidating absolute power", ml: "രാജഭരണങ്ങൾ ശക്തി പ്രാപിക്കുന്നു" }
+        ],
+        ans: 1,
+        hint: "Total collapse of social, political, and moral frameworks.",
+        hint_ml: "ധാർമ്മിക വ്യവസ്ഥിതികളുടെ തകർച്ചയും ലോകത്ത് പടരുന്ന അരാജകത്വവും."
+      },
+      {
+        q: "In Yeats's esoteric philosophy, the Latin phrase 'Spiritus Mundi' refers to:",
+        q_ml: "യേറ്റ്സിന്റെ തത്ത്വചിന്തയിൽ 'സ്പിരിറ്റസ് മുണ്ടി' (Spiritus Mundi) എന്നത് എന്തിനെ സൂചിപ്പിക്കുന്നു?",
+        options: [
+          { text: "The physical geography of planet Earth", ml: "ഭൂമിയുടെ ഭൂമിശാസ്ത്രം" },
+          { text: "A classical Roman empire legal treaty", ml: "ഒരു റോമൻ നിയമ ഉടമ്പടി" },
+          { text: "The universal collective memory, subconscious, and archetypal reservoir of humanity", ml: "മനുഷ്യരാശിയുടെ സാർവ്വത്രികമായ കൂട്ടായ ഓർമ്മയും ഉപബോധമനസ്സും" },
+          { text: "A theological heaven inhabited by angels", ml: "മാലാഖമാർ വസിക്കുന്ന സ്വർഗ്ഗം" }
+        ],
+        ans: 2,
+        hint: "The collective soul or universal memory shared by all humankind.",
+        hint_ml: "മനുഷ്യരാശിയുടെ പൊതുവായ ആദിമ ഓർമ്മകളും ചിന്തകളും ഉൾക്കൊള്ളുന്ന ആത്മീയ മണ്ഡലം."
+      },
+      {
+        q: "The ominous 'rough beast' slouching towards Bethlehem symbolizes:",
+        q_ml: "ബെത്‌ലഹേമിലേക്ക് ഇഴഞ്ഞുനീങ്ങുന്ന 'ക്രൂര മൃഗം' (rough beast) എന്തിന്റെ പ്രതീകമാണ്?",
+        options: [
+          { text: "The gentle, loving return of Jesus Christ", ml: "യേശുക്രിസ്തുവിന്റെ സ്നേഹപൂർണ്ണമായ പുനരാഗമനം" },
+          { text: "A fleeting, harmless political disturbance", ml: "നിസ്സാരമായ ഒരു രാഷ്ട്രീയ പ്രശ്നം" },
+          { text: "The terrifying dawn of a violent, monstrous new historical cycle", ml: "ഭീകരവും അക്രമാസക്തവുമായ ഒരു പുതിയ ചരിത്ര കാലഘട്ടത്തിന്റെ തുടക്കം" },
+          { text: "The triumph of rational scientific enlightenment", ml: "ശാസ്ത്രീയ യുക്തിയുടെ വിജയം" }
+        ],
+        ans: 2,
+        hint: "A nightmarish new era replacing two millennia of Christian civilization.",
+        hint_ml: "ക്രൂരത നിറഞ്ഞ, ഭീതിദമായ ഒരു പുതിയ യുഗത്തിന്റെ വരവ്."
+      },
+      {
+        q: "Which of the following encapsulates the overarching theme of \"The Second Coming\"?",
+        q_ml: "'ദി സെക്കൻഡ് കമിംഗ്' എന്ന കവിതയുടെ സമഗ്രമായ പ്രമേയം എന്താണ്?",
+        options: [
+          { text: "Romantic idyllic love and aesthetic pastoral beauty", ml: "റൊമാന്റിക് പ്രണയവും പ്രകൃതിഭംഗിയും" },
+          { text: "Technological optimism and industrial progress", ml: "സാങ്കേതിക പുരോഗതി" },
+          { text: "Apocalyptic dread, pervasive violence, moral confusion, and civilizational collapse", ml: "ലോകാവസാന ഭീതി, അക്രമം, ധാർമ്മിക ആശയക്കുഴപ്പം, സംസ്കാരത്തിന്റെ തകർച്ച" },
+          { text: "The romanticization of heroic battlefield sacrifice", ml: "യുദ്ധത്തിലെ വീരമൃത്യുവിനെ മഹത്വവൽക്കരിക്കൽ" }
+        ],
+        ans: 2,
+        hint: "Civilization falling into violent, chaotic upheaval.",
+        hint_ml: "യുദ്ധവും അരാജകത്വവും കൊണ്ട് മനുഷ്യ സംസ്കാരം നേരിടുന്ന ഭീതിദമായ തകർച്ച."
+      },
+      {
+        q: "The poem concludes with a haunting rhetorical question about the beast slouching towards Bethlehem. What is the psychological effect of this ending?",
+        q_ml: "ബെത്‌ലഹേമിലേക്ക് നീങ്ങുന്ന മൃഗത്തെക്കുറിച്ചുള്ള ചോദ്യത്തോടെ കവിത അവസാനിക്കുന്നത് വായനക്കാരിൽ എന്ത് വികാരമാണ് ഉണ്ടാക്കുന്നത്?",
+        options: [
+          { text: "It provides a clear, reassuring roadmap for modern political leaders", ml: "നേതാക്കൾക്ക് വ്യക്തമായ വഴി കാണിച്ചു കൊടുക്കുന്നു" },
+          { text: "It celebrates the triumphant dawn of international democracy", ml: "ജനാധിപത്യത്തിന്റെ ഉദയത്തെ ആഘോഷിക്കുന്നു" },
+          { text: "It leaves readers with deep dread, ominous suspense, and cosmic uncertainty", ml: "കടുത്ത ഭയവും അനിശ്ചിതത്വവും ഉദ്വേഗവും ബാക്കിനിർത്തുന്നു" },
+          { text: "It confirms that salvation has already been achieved", ml: "മോക്ഷം ലഭിച്ചതായി സ്ഥിരീകരിക്കുന്നു" }
+        ],
+        ans: 2,
+        hint: "A chilling question that offers no solace or comforting resolution.",
+        hint_ml: "ഭാവിയെക്കുറിച്ചുള്ള ഭീതിദമായ അനിശ്ചിതത്വം വായനക്കാരനിൽ അവശേഷിപ്പിക്കുന്നു."
+      },
+      {
+        q: "James Finn Garner's \"The Frog Prince\" is a satirical modern parody of the classic fairy tale originally popularized by:",
+        q_ml: "ജെയിംസ് ഫിൻ ഗാർണറുടെ 'ദി ഫ്രോഗ് പ്രിൻസ്' ആരുടെ പ്രസിദ്ധമായ നാടോടിക്കഥയുടെ ആക്ഷേപഹാസ്യ പുനരാവിഷ്കാരമാണ്?",
+        options: [
+          { text: "Hans Christian Andersen", ml: "ഹാൻസ് ക്രിസ്റ്റ്യൻ ആൻഡേഴ്സൺ" },
+          { text: "Charles Perrault", ml: "ചാൾസ് പെറോൾട്ട്" },
+          { text: "The Grimm Brothers", ml: "ഗ്രിം സഹോദരന്മാർ (The Grimm Brothers)" },
+          { text: "Lewis Carroll", ml: "ലൂയിസ് കരോൾ" }
+        ],
+        ans: 2,
+        hint: "The famous German folklorist brothers Jacob and Wilhelm.",
+        hint_ml: "പ്രസിദ്ധരായ ജർമ്മൻ നാടോടിക്കഥാ സമാഹർത്താക്കൾ."
+      },
+      {
+        q: "In Garner's humorous politically-correct retelling, how is the princess character depicted?",
+        q_ml: "ഗാർണറുടെ പുതിയ കഥയിൽ രാജകുമാരിയെ എങ്ങനെയാണ് ചിത്രീകരിച്ചിരിക്കുന്നത്?",
+        options: [
+          { text: "As a helpless, naive damsel waiting passively for rescue", ml: "രക്ഷകനെ കാത്തിരിക്കുന്ന നിസ്സഹായയായ ഒരു പെൺകുട്ടി" },
+          { text: "As an independent, environmentally-conscious, eco-feminist woman", ml: "പരിസ്ഥിതി ബോധമുള്ള, സ്വതന്ത്രയായ ഒരു ഇക്കോ-ഫെമിനിസ്റ്റ് സ്ത്രീ" },
+          { text: "As a cruel, spoiled monarch obsessed with gold jewels", ml: "സ്വർണ്ണത്തിൽ ഭ്രമമുള്ള ക്രൂരയായ രാജ്ഞി" },
+          { text: "As a magical sorceress controlling the marshland", ml: "മാന്ത്രികശക്തിയുള്ള ഒരു മന്ത്രവാദിനി" }
+        ],
+        ans: 1,
+        hint: "Self-sufficient, ecologically alert, and rejecting patriarchal damsel tropes.",
+        hint_ml: "പ്രകൃതിയെ സ്നേഹിക്കുന്ന, സ്വന്തം വ്യക്തിത്വമുള്ള ഒരു സ്ത്രീയായി."
+      },
+      {
+        q: "When the princess kisses the frog and breaks the spell, what does the frog transform into?",
+        q_ml: "രാജകുമാരി തവളയെ ചുംബിക്കുമ്പോൾ, അത് എന്തായിട്ടാണ് മാറുന്നത്?",
+        options: [
+          { text: "A dashing and chivalrous prince", ml: "സുന്ദരനായ ഒരു രാജകുമാരൻ" },
+          { text: "An honorable medieval knight", ml: "ഒരു യോദ്ധാവ്" },
+          { text: "An honest agrarian peasant farmer", ml: "ഒരു കർഷകൻ" },
+          { text: "A greedy, exploitative corporate real estate developer", ml: "കച്ചവടക്കണ്ണുള്ള ഒരു റിയൽ എസ്റ്റേറ്റ് ഡെവലപ്പർ" }
+        ],
+        ans: 3,
+        hint: "He wants to bulldoze the marshland to build profitable condos.",
+        hint_ml: "പ്രകൃതിയെ നശിപ്പിച്ചു ഫ്ലാറ്റുകൾ പണിയാൻ നോക്കുന്ന അത്യാഗ്രഹിയായ ഒരു ബിസിനസുകാരൻ."
+      },
+      {
+        q: "Which socio-economic issue is sharply satirized when the transformed frog announces plans to bulldoze the marsh and build condominiums?",
+        q_ml: "തവള ചതുപ്പ് നികത്തി ഫ്ലാറ്റുകൾ പണിയാൻ തീരുമാനിക്കുമ്പോൾ വിമർശിക്കപ്പെടുന്ന പ്രശ്നം ഏതാണ്?",
+        options: [
+          { text: "Feudal agricultural tax policies", ml: "ഫ്യൂഡൽ കാർഷിക നികുതികൾ" },
+          { text: "Unchecked predatory capitalism and environmental destruction", ml: "നിയന്ത്രണമില്ലാത്ത മുതലാളിത്തവും പരിസ്ഥിതി നാശവും" },
+          { text: "Religious monastic asceticism", ml: "മതപരമായ സന്യാസ ജീവിതം" },
+          { text: "International maritime commerce", ml: "സമുദ്ര വ്യാപാരം" }
+        ],
+        ans: 1,
+        hint: "Commercial greed destroying delicate natural ecosystems.",
+        hint_ml: "ലാഭക്കൊതി മൂലം പ്രകൃതിയെയും ആവാസവ്യവസ്ഥയെയും തകർക്കുന്ന മുതലാളിത്ത രീതി."
+      },
+      {
+        q: "Which prominent literary techniques are employed throughout Garner's Politically Correct Bedtime Stories?",
+        q_ml: "ഗാർണറുടെ 'പൊളിറ്റിക്കലി കറക്റ്റ് ബെഡ്‌ടൈം സ്റ്റോറീസ്' എന്ന കൃതിയിൽ ഉപയോഗിച്ചിട്ടുള്ള പ്രധാന സാഹിത്യ ശൈലി ഏതാണ്?",
+        options: [
+          { text: "Epic verse and heroic myth", ml: "മഹാകാവ്യ ശൈലിയും ഐതിഹ്യങ്ങളും" },
+          { text: "Satire, parody, irony, and subversion of fairy-tale tropes", ml: "ആക്ഷേപഹാസ്യം, പാരഡി, വിരോധാഭാസം, പരമ്പരാഗത കഥകളുടെ മാറ്റിയെഴുത്ത്" },
+          { text: "Naturalistic tragedy and melodrama", ml: "ട്രാജഡിയും മെലോഡ്രാമയും" },
+          { text: "Gothic suspense and horror", ml: "ഗോഥിക് ഭീകരത" }
+        ],
+        ans: 1,
+        hint: "Rewriting classic fairy tales with humorous contemporary jargon and parody.",
+        hint_ml: "പഴയ കഥകളെ ആധുനിക സാമൂഹിക പദങ്ങൾ ഉപയോഗിച്ച് പരിഹസിക്കുന്ന പാരഡി ശൈലി."
+      },
+      {
+        q: "What is the primary artistic and social objective of Garner's modernized retelling?",
+        q_ml: "ഗാർണറുടെ ഈ കഥയുടെ പ്രധാന ലക്ഷ്യം എന്താണ്?",
+        options: [
+          { text: "To preserve archaic medieval folklore without alteration", ml: "പഴയ നാടോടിക്കഥകളെ അതേപടി നിലനിർത്തുക" },
+          { text: "To glorify royal dynastic traditions", ml: "രാജകുടുംബങ്ങളെ മഹത്വവൽക്കരിക്കുക" },
+          { text: "To entertain audiences while humorously exposing modern societal hypocrisies and gender stereotypes", ml: "സമൂഹത്തിലെ കാപട്യങ്ങളെയും വാർപ്പ് മാതൃകകളെയും ഹാസ്യത്തിലൂടെ തുറന്നുകാട്ടുക" },
+          { text: "To serve as a strict legal commentary on urban zoning laws", ml: "നഗര നിയമങ്ങളെക്കുറിച്ച് പഠിപ്പിക്കുക" }
+        ],
+        ans: 2,
+        hint: "Humorous critique of fairy tale clichés and modern political sensitivities.",
+        hint_ml: "ചിരിയോടൊപ്പം സമൂഹത്തിലെ സങ്കുചിത ചിന്തകളെയും കാപട്യങ്ങളെയും ചോദ്യം ചെയ്യൽ."
+      },
+      {
+        q: "According to Helen Keller in her essay 'Optimism', what is the universal, fundamental desire shared by all human beings?",
+        q_ml: "ഹെലൻ കെല്ലറുടെ 'ഓപ്റ്റിമിസം' എന്ന ലേഖനമനുസരിച്ച് എല്ലാ മനുഷ്യരുടെയും അടിസ്ഥാനപരമായ ആഗ്രഹം എന്താണ്?",
+        options: [
+          { text: "Immense material wealth", ml: "വലിയ ഭൗതിക സമ്പത്ത്" },
+          { text: "Universal public fame and adoration", ml: "ലോകപ്രശസ്തി" },
+          { text: "True happiness and inner fulfilment", ml: "യഥാർത്ഥ സന്തോഷവും ആന്തരിക സംതൃപ്തിയും" },
+          { text: "Political dominance and worldly power", ml: "രാഷ്ട്രീയ അധികാരവും സ്വാധീനവും" }
+        ],
+        ans: 2,
+        hint: "All human activities ultimately aim for happiness.",
+        hint_ml: "മനുഷ്യന്റെ സകല പ്രയത്നങ്ങളും യഥാർത്ഥ സന്തോഷം കണ്ടെത്താനാണ്."
+      },
+      {
+        q: "According to Helen Keller, where does authentic and enduring happiness originate?",
+        q_ml: "ഹെലൻ കെല്ലറുടെ അഭിപ്രായത്തിൽ ശാശ്വതമായ സന്തോഷം ഉത്ഭവിക്കുന്നത് എവിടെ നിന്നാണ്?",
+        options: [
+          { text: "From lavish physical luxuries and sensory pleasures", ml: "ആഡംബരങ്ങളിൽ നിന്നും സുഖഭോഗങ്ങളിൽ നിന്നും" },
+          { text: "From public social hierarchy and titles", ml: "സ്ഥാനമാനങ്ങളിൽ നിന്ന്" },
+          { text: "From inner spiritual strength, noble hope, and engaging in meaningful work", ml: "ആന്തരിക ആത്മീയ കരുത്ത്, പ്രതീക്ഷ, അർത്ഥവത്തായ പ്രവർത്തനങ്ങൾ എന്നിവയിൽ നിന്ന്" },
+          { text: "From living a life completely free of all challenges", ml: "വെല്ലുവിളികൾ ഒന്നുമില്ലാത്ത ഒരു ജീവിതത്തിൽ നിന്ന്" }
+        ],
+        ans: 2,
+        hint: "Happiness comes from within, through spiritual faith and useful endeavor.",
+        hint_ml: "മനസ്സിന്റെ നന്മയിൽ നിന്നും അർത്ഥവത്തായ പരിശ്രമങ്ങളിൽ നിന്നും."
+      },
+      {
+        q: "What pivotal breakthrough transformed Helen Keller's childhood existence from 'darkness and stillness' into 'hope and joy'?",
+        q_ml: "ഹെലൻ കെല്ലറുടെ ജീവിതത്തെ ഇരുട്ടിൽ നിന്നും പ്രതീക്ഷയിലേക്ക് മാറ്റിയ പ്രധാന വഴിത്തിരിവ് എന്തായിരുന്നു?",
+        options: [
+          { text: "Traveling abroad across European nations", ml: "യൂറോപ്യൻ രാജ്യങ്ങൾ സന്ദർശിച്ചത്" },
+          { text: "Unlocking the power of language and communication through teacher Anne Sullivan", ml: "ആനി സള്ളിവൻ എന്ന അധ്യാപികയിലൂടെ ഭാഷയും ആശയവിനിമയ ശേഷിയും സ്വായത്തമാക്കിയത്" },
+          { text: "Receiving national literary awards and financial grants", ml: "സാഹിത്യ അവാർഡുകൾ നേടിയത്" },
+          { text: "Undergoing experimental medical surgeries", ml: "ശസ്ത്രക്രിയകൾക്ക് വിധേയയായത്" }
+        ],
+        ans: 1,
+        hint: "Learning that water had a name at the well-house pump.",
+        hint_ml: "തന്റെ പ്രിയ അധ്യാപികയിലൂടെ അക്ഷരങ്ങളുടെയും ആശയവിനിമയത്തിന്റെയും ലോകം തുറന്നുകിട്ടിയത്."
+      },
+      {
+        q: "What does Helen Keller characterize and denounce as 'false optimism'?",
+        q_ml: "ഹെലൻ കെല്ലർ 'വ്യാജ ശുഭാപ്തിവിശ്വാസം' (false optimism) എന്ന് വിളിച്ച് എതിർക്കുന്നത് എന്തിനെയാണ്?",
+        options: [
+          { text: "Believing that education leads to personal growth", ml: "വിദ്യാഭ്യാസം വളർച്ചയിലേക്ക് നയിക്കുമെന്ന് വിശ്വസിക്കുന്നത്" },
+          { text: "Blindly ignoring real human suffering and social injustice while pretending everything is perfect", ml: "എല്ലാം തികഞ്ഞതാണെന്ന് നടിച്ച്, മനുഷ്യന്റെ ദുരിതങ്ങളെയും അനീതികളെയും കണ്ടില്ലെന്ന് നടിക്കുന്നത്" },
+          { text: "Diligently working toward long-term moral ideals", ml: "ധാർമ്മിക മൂല്യങ്ങൾക്കായി പ്രവർത്തിക്കുന്നത്" },
+          { text: "Maintaining quiet patience during medical illness", ml: "രോഗാവസ്ഥയിൽ ക്ഷമയോടെയിരിക്കുന്നത്" }
+        ],
+        ans: 1,
+        hint: "Shallow, blind cheerfulness that denies systemic misery.",
+        hint_ml: "യാഥാർത്ഥ്യങ്ങൾക്കും കഷ്ടപ്പാടുകൾക്കും നേരെ കണ്ണടച്ചുള്ള പൊള്ളയായ ശുഭാപ്തിവിശ്വാസം."
+      },
+      {
+        q: "According to Keller, what profound virtues does facing and overcoming suffering cultivate in humanity?",
+        q_ml: "കെല്ലറുടെ അഭിപ്രായത്തിൽ കഷ്ടപ്പാടുകൾ നേരിട്ട് അതിജീവിക്കുന്നത് മനുഷ്യനിൽ വളർത്തുന്ന ഗുണങ്ങൾ ഏവ?",
+        options: [
+          { text: "Cynicism, resentment, and isolation", ml: "നിരാശയും ഒറ്റപ്പെടലും" },
+          { text: "Arrogant pride and selfish ambition", ml: "അഹങ്കാരവും സ്വാർത്ഥതയും" },
+          { text: "Patience, moral courage, resilience, and deep compassion for others", ml: "ക്ഷമ, ധാർമ്മിക ധൈര്യം, അതിജീവന ശേഷി, മറ്റുള്ളവരോടുള്ള സഹാനുഭൂതി" },
+          { text: "Lifelong helplessness and dependence on charity", ml: "പരസഹായത്തെ ആശ്രയിക്കൽ" }
+        ],
+        ans: 2,
+        hint: "Character cannot be developed in ease and quiet; suffering strengthens the soul.",
+        hint_ml: "പ്രതിസന്ധികളാണ് മനുഷ്യന്റെ മനസ്സിനെ പാകപ്പെടുത്തുന്നതും ദയയുള്ളവനാക്കുന്നതും."
+      },
+      {
+        q: "Which statement accurately reflects Helen Keller's philosophy of work and human effort?",
+        q_ml: "മനുഷ്യന്റെ അധ്വാനത്തെക്കുറിച്ചുള്ള ഹെലൻ കെല്ലറുടെ കാഴ്ചപ്പാടിനെ ശരിയായി പ്രതിഫലിപ്പിക്കുന്ന പ്രസ്താവന ഏതാണ്?",
+        options: [
+          { text: "Work is solely a burdensome economic chore meant for earning money", ml: "ജോലി എന്നത് കേവലം പണം സമ്പാദിക്കാനുള്ള ഒരു ഭാരം മാത്രമാണ്" },
+          { text: "Only historically monumental achievements possess genuine value", ml: "വലിയ നേട്ടങ്ങൾക്ക് മാത്രമേ വിലയുള്ളൂ" },
+          { text: "The willingness and desire to engage in creative work is itself an active declaration of optimism", ml: "സൃഷ്ടിപരമായ പ്രവർത്തനങ്ങളിൽ ഏർപ്പെടാനുള്ള സന്നദ്ധത തന്നെ ശുഭാപ്തിവിശ്വാസത്തിന്റെ പ്രഖ്യാപനമാണ്" },
+          { text: "Laborious tasks should be avoided whenever leisure is possible", ml: "കഠിനാധ്വാനം പരമാവധി ഒഴിവാക്കണം" }
+        ],
+        ans: 2,
+        hint: "Productive engagement demonstrates belief in a better tomorrow.",
+        hint_ml: "ജോലി ചെയ്യാനുള്ള ആഗ്രഹം തന്നെ നാളെയെക്കുറിച്ചുള്ള ശുഭാപ്തിവിശ്വാസമാണ്."
+      },
+      {
+        q: "How does Helen Keller define optimism in the concluding section of her essay?",
+        q_ml: "ലേഖനത്തിന്റെ ഉപസംഹാരത്തിൽ ഹെലൻ കെല്ലർ ശുഭാപ്തിവിശ്വാസത്തെ എങ്ങനെയാണ് നിർവചിക്കുന്നത്?",
+        options: [
+          { text: "As a fleeting mood that vanishes during cloudy days", ml: "ക്ഷണികമായ ഒരു മാനസികാവസ്ഥയായി" },
+          { text: "As irrational wishful thinking without empirical backing", ml: "അടിസ്ഥാനമില്ലാത്ത വ്യാമോഹമായി" },
+          { text: "As her personal religion, bedrock faith, and guiding philosophy of existence", ml: "തന്റെ വ്യക്തിപരമായ മതം, ഉറച്ച വിശ്വാസം, ജീവിതദർശനം എന്നിവയായി" },
+          { text: "As a superficial technique for winning corporate success", ml: "വിജയം നേടാനുള്ള ഒരു അടവായി" }
+        ],
+        ans: 2,
+        hint: "'Optimism is the faith that leads to achievement.'",
+        hint_ml: "തന്റെ ജീവിതത്തെ നയിക്കുന്ന ഏറ്റവും വലിയ വിശ്വാസവും ദർശനവുമാണത്."
+      },
+      {
+        q: "According to Helen Keller, what is definitely NOT the true foundation of optimism?",
+        q_ml: "ഹെലൻ കെല്ലറുടെ അഭിപ്രായത്തിൽ ശുഭാപ്തിവിശ്വാസത്തിന്റെ യഥാർത്ഥ അടിത്തറയല്ലാത്തത് ഏതാണ്?",
+        options: [
+          { text: "Spiritual faith and resilience", ml: "ആത്മീയ വിശ്വാസവും അതിജീവന ശേഷിയും" },
+          { text: "Active dedication to assisting others", ml: "മറ്റുള്ളവരെ സഹായിക്കാനുള്ള സമർപ്പണം" },
+          { text: "Superficial material possessions, physical sensory comforts, and luxury", ml: "ഭൗതിക സുഖസൗകര്യങ്ങളും ആഡംബരങ്ങളും" },
+          { text: "Facing adversity with moral purpose", ml: "പ്രതിസന്ധികളെ ധൈര്യത്തോടെ നേരിടൽ" }
+        ],
+        ans: 2,
+        hint: "Material riches cannot purchase true spiritual peace.",
+        hint_ml: "പുറമെയുള്ള ആഡംബരങ്ങൾക്കൊന്നും മനസ്സമാധാനം നൽകാനാവില്ല."
+      },
+      {
+        q: "What does Helen Keller mean by asserting that 'the desire and will to work is in itself an expression of optimism'?",
+        q_ml: "'അധ്വാനിക്കാനുള്ള ആഗ്രഹം തന്നെ ശുഭാപ്തിവിശ്വാസത്തിന്റെ പ്രകടനമാണ്' എന്നതുകൊണ്ട് ഹെലൻ കെല്ലർ എന്താണ് അർത്ഥമാക്കുന്നത്?",
+        options: [
+          { text: "That physical labor automatically creates high financial profits", ml: "കായികാധ്വാനം വലിയ ലാഭമുണ്ടാക്കുന്നു എന്നത്" },
+          { text: "That choosing to work demonstrates faith that human effort matters and the future can be shaped", ml: "മനുഷ്യന്റെ പരിശ്രമങ്ങൾക്ക് മാറ്റമുണ്ടാക്കാൻ കഴിയുമെന്നുള്ള വിശ്വാസമാണത്" },
+          { text: "That students should forgo intellectual pursuits for factory jobs", ml: "എല്ലാവരും ഫാക്ടറി ജോലികൾ ചെയ്യണം എന്നത്" },
+          { text: "That optimism cannot exist outside formal employment", ml: "ജോലിയില്ലാതെ ശുഭാപ്തിവിശ്വാസം ഉണ്ടാകില്ല എന്നത്" }
+        ],
+        ans: 1,
+        hint: "To work is to believe that action can mold a better future.",
+        hint_ml: "നമ്മുടെ പരിശ്രമങ്ങളിലൂടെ ഭാവിയെ രൂപപ്പെടുത്താൻ കഴിയുമെന്ന വിശ്വാസം."
+      },
+      {
+        q: "According to Keller, why is confronting evil, hardship, and adversity essential for the human spirit?",
+        q_ml: "കെല്ലറുടെ അഭിപ്രായത്തിൽ പ്രതിസന്ധികളെയും തിന്മകളെയും അഭിമുഖീകരിക്കേണ്ടത് മനുഷ്യന് അത്യാവശ്യമായിരിക്കുന്നത് എന്തുകൊണ്ടാണ്?",
+        options: [
+          { text: "It forces people to surrender their aspirations and become cynical", ml: "ആളുകൾ അവരുടെ ആഗ്രഹങ്ങൾ ഉപേക്ഷിക്കാൻ" },
+          { text: "It proves that human beings are fundamentally incapable of finding peace", ml: "സമാധാനം കണ്ടെത്താൻ മനുഷ്യന് കഴിയില്ല എന്ന് തെളിയിക്കാൻ" },
+          { text: "It tests and fortifies inner character, teaching human beings to truly value goodness and truth", ml: "അത് മനുഷ്യന്റെ സ്വഭാവത്തെ ഉറപ്പുള്ളതാക്കുകയും നന്മയെ വിലമതിക്കാൻ പഠിപ്പിക്കുകയും ചെയ്യുന്നു" },
+          { text: "It demonstrates that suffering can never be overcome", ml: "കഷ്ടപ്പാടുകൾ ഒരിക്കലും മാറില്ലെന്ന് കാണിക്കാൻ" }
+        ],
+        ans: 2,
+        hint: "Conflict and trial refine virtue and test faith.",
+        hint_ml: "പ്രതിസന്ധികളിലൂടെ കടന്നുപോകുമ്പോഴാണ് മനുഷ്യൻ കൂടുതൽ നന്മയുള്ളവനും ശക്തനുമായി മാറുന്നത്."
+      },
+      {
+        q: "What does Helen Keller intend by her 'religion of optimism'?",
+        q_ml: "തന്റെ 'ശുഭാപ്തിവിശ്വാസത്തിന്റെ മതം' എന്നതുകൊണ്ട് ഹെലൻ കെല്ലർ എന്താണ് ഉദ്ദേശിക്കുന്നത്?",
+        options: [
+          { text: "A sectarian dogma demanding unquestioned obedience", ml: "ഒരു പ്രത്യേക മതത്തിന്റെ അന്ധമായ വിശ്വാസം" },
+          { text: "A ritual that denies the existence of physical illness", ml: "രോഗങ്ങളെ നിഷേധിക്കുന്ന അനുഷ്ഠാനം" },
+          { text: "An abiding faith in human potential, divine benevolence, and the triumph of light over darkness", ml: "മനുഷ്യന്റെ സാധ്യതകളിലുള്ള ഉറച്ച വിശ്വാസവും നന്മയുടെ വിജയവും" },
+          { text: "A political doctrine favoring social isolation", ml: "ഒറ്റപ്പെടലിനെ അനുകൂലിക്കുന്ന ഒരു രാഷ്ട്രീയ സിദ്ധാന്തം" }
+        ],
+        ans: 2,
+        hint: "Enduring belief that love, goodness, and light prevail over suffering.",
+        hint_ml: "തിന്മയ്ക്കുമേൽ നന്മ വിജയിക്കുമെന്ന മനുഷ്യനന്മയിലുള്ള അടിയുറച്ച വിശ്വാസം."
+      },
+      {
+        q: "According to Dr. B.R. Ambedkar, the caste system is fundamentally distinct from ordinary socioeconomic specialization because it is not merely a division of labour, but also a:",
+        q_ml: "ഡോ. ബി.ആർ. അംബേദ്കറുടെ അഭിപ്രായത്തിൽ ജാതിവ്യവസ്ഥ കേവലം തൊഴിൽ വിഭജനം മാത്രമല്ല, മറിച്ച് എന്തുകൂടിയാണ്?",
+        options: [
+          { text: "Division of capital and financial resources", ml: "മൂലധനത്തിന്റെയും പണത്തിന്റെയും വിഭജനം" },
+          { text: "Division of religious denominations", ml: "മതവിഭാഗങ്ങളുടെ വിഭജനം" },
+          { text: "Division of labourers into compartmentalized, graded hierarchies", ml: "തൊഴിലാളികളെ തട്ടുകളാക്കി തിരിച്ചുള്ള വിഭജനം (Division of labourers)" },
+          { text: "Division of regional languages and dialects", ml: "ഭാഷകളുടെ വിഭജനം" }
+        ],
+        ans: 2,
+        hint: "It divides humans into stratified, inescapable social hierarchies.",
+        hint_ml: "തൊഴിലാളികളെ തന്നെ ഉച്ചനീചത്വങ്ങളുള്ള തട്ടുകളായി തിരിക്കുന്ന വ്യവസ്ഥിതിയാണത്."
+      },
+      {
+        q: "Why does Dr. Ambedkar sharply criticize the caste system's mechanism for assigning occupations?",
+        q_ml: "ജാതിവ്യവസ്ഥ തൊഴിൽ നിശ്ചയിക്കുന്ന രീതിയെ അംബേദ്കർ രൂക്ഷമായി വിമർശിക്കുന്നത് എന്തുകൊണ്ടാണ്?",
+        options: [
+          { text: "Because it fosters excessive market competition among workers", ml: "തൊഴിലാളികൾക്കിടയിൽ കടുത്ത മത്സരം ഉണ്ടാക്കുന്നു എന്നതിനാൽ" },
+          { text: "Because it predetermines a person's life pursuit based on parental birth rather than individual aptitude and choice", ml: "വ്യക്തിയുടെ കഴിവിനെയല്ല, മറിച്ച് ജനനത്തെ അടിസ്ഥാനമാക്കി തൊഴിൽ നിർബന്ധിക്കുന്നതിനാൽ" },
+          { text: "Because it permits complete occupational mobility and deregulation", ml: "തൊഴിൽ മാറാനുള്ള സ്വാതന്ത്ര്യം നൽകുന്നതിനാൽ" },
+          { text: "Because it accelerates factory mechanization and industrial output", ml: "വ്യവസായവൽക്കരണത്തെ വേഗത്തിലാക്കുന്നതിനാൽ" }
+        ],
+        ans: 1,
+        hint: "Destiny is assigned at birth rather than based on merit, capacity, or interest.",
+        hint_ml: "കഴിവും താൽപര്യവുമല്ല, ജനിച്ച ജാതിയാണ് ഒരാളുടെ തൊഴിൽ നിശ്ചയിക്കുന്നത്."
+      },
+      {
+        q: "In his historic treatise, what does Ambedkar identify as a primary limitation imposed by caste on the working individual?",
+        q_ml: "ജാതിവ്യവസ്ഥ തൊഴിലാളിയിൽ അടിച്ചേൽപ്പിക്കുന്ന പ്രധാന പരിമിതിയായി അംബേദ്കർ ചൂണ്ടിക്കാണിക്കുന്നത് എന്താണ്?",
+        options: [
+          { text: "It forbids travel abroad completely", ml: "വിദേശയാത്ര പൂർണ്ണമായി വിലക്കുന്നു" },
+          { text: "It denies workers the right to join recreational clubs", ml: "വിനോദങ്ങളിൽ ഏർപ്പെടുന്നത് തടയുന്നു" },
+          { text: "It prevents individuals from changing occupations as technological and economic circumstances evolve", ml: "സാഹചര്യങ്ങൾ മാറുമ്പോൾ മറ്റ് തൊഴിലുകളിലേക്ക് മാറാൻ വ്യക്തികളെ അനുവദിക്കുന്നില്ല" },
+          { text: "It prohibits workers from speaking multiple regional languages", ml: "മറ്റ് ഭാഷകൾ സംസാരിക്കുന്നത് വിലക്കുന്നു" }
+        ],
+        ans: 2,
+        hint: "A Hindu cannot change his trade even if he starves.",
+        hint_ml: "പട്ടിണി കിടന്നാലും പാരമ്പര്യ തൊഴിലല്ലാതെ മറ്റൊന്ന് ചെയ്യാൻ ജാതി അനുവദിക്കുന്നില്ല."
+      },
+      {
+        q: "Ambedkar argues that the hereditary rigidity of caste directly causes economic stagnation and unemployment because it:",
+        q_ml: "ജാതിവ്യവസ്ഥ സാമ്പത്തിക മുരടിപ്പിനും തൊഴിലില്ലായ്മയ്ക്കും കാരണമാകുന്നു എന്ന് അംബേദ്കർ വാദിക്കുന്നത് എന്തുകൊണ്ടാണ്?",
+        options: [
+          { text: "Discourages the building of modern highways and transport networks", ml: "റോഡുകൾ നിർമ്മിക്കുന്നത് തടയുന്നു" },
+          { text: "Prevents people from freely taking up productive callings outside their assigned birth caste even when jobs are vacant", ml: "തൊഴിലവസരങ്ങൾ ഉണ്ടായാലും ജാതിക്ക് പുറത്തുള്ള ജോലികൾ ചെയ്യാൻ ജനങ്ങളെ തടയുന്നു" },
+          { text: "Creates excessive corporate monopolies", ml: "കുത്തക മുതലാളിത്തം ഉണ്ടാക്കുന്നു" },
+          { text: "Forces all citizens into overseas migration", ml: "എല്ലാവരെയും കുടിയേറ്റത്തിന് നിർബന്ധിക്കുന്നു" }
+        ],
+        ans: 1,
+        hint: "Occupational mobility is crippled even when demand for new labor exists.",
+        hint_ml: "മറ്റൊരു മേഖലയിൽ ജോലി സാധ്യതയുണ്ടെങ്കിലും ജാതിവിലക്ക് കാരണം ആളുകൾക്ക് ജോലിയില്ലാതെ നിൽക്കേണ്ടി വരുന്നു."
+      },
+      {
+        q: "According to Ambedkar, why do many essential productive occupations in India provoke 'aversion' and reluctance among workers?",
+        q_ml: "ഇന്ത്യയിൽ പല പ്രധാനപ്പെട്ട തൊഴിലുകളോടും ആളുകൾക്ക് വിരക്തി തോന്നാൻ കാരണം എന്താണെന്നാണ് അംബേദ്കർ പറയുന്നത്?",
+        options: [
+          { text: "Because they require extensive academic degrees", ml: "വലിയ ബിരുദങ്ങൾ ആവശ്യമുള്ളതിനാൽ" },
+          { text: "Because agricultural tools are difficult to purchase", ml: "ഉപകരണങ്ങൾ വാങ്ങാൻ കിട്ടാത്തതിനാൽ" },
+          { text: "Because society considers them ritually degrading, treating the worker with social stigma and contempt", ml: "സമൂഹം ആ തൊഴിലുകളെ തരംതാണതായി കാണുകയും തൊഴിലാളിയെ അവഹേളിക്കുകയും ചെയ്യുന്നതിനാൽ" },
+          { text: "Because workers prefer working exclusively in urban government offices", ml: "സർക്കാർ ജോലി മാത്രം ചെയ്യാൻ ആഗ്രഹിക്കുന്നതിനാൽ" }
+        ],
+        ans: 2,
+        hint: "Social ignominy and stigma attached to physical labor degrade human self-worth.",
+        hint_ml: "ചില തൊഴിലുകളെ സമൂഹം മോശമായി കാണുകയും തൊഴിലെടുക്കുന്നവരെ പുച്ഛിക്കുകയും ചെയ്യുന്നതുകൊണ്ട്."
+      },
+      {
+        q: "What is Dr. Ambedkar's final economic assessment of the caste system as an organization of production?",
+        q_ml: "ഉൽപ്പാദന വ്യവസ്ഥ എന്ന നിലയിൽ ജാതിവ്യവസ്ഥയെക്കുറിച്ചുള്ള ഡോ. അംബേദ്കറുടെ അന്തിമ സാമ്പത്തിക വിലയിരുത്തൽ എന്താണ്?",
+        options: [
+          { text: "It is highly beneficial because it guarantees hereditary occupational stability", ml: "പരമ്പരാഗത തൊഴിൽ ഉറപ്പുനൽകുന്നതിനാൽ അത് വളരെ ഗുണകരമാണ്" },
+          { text: "It is necessary for maintaining traditional moral consensus and social order", ml: "സാമൂഹിക ക്രമം നിലനിർത്താൻ അത് ആവശ്യമാണ്" },
+          { text: "It is profoundly harmful because it suppresses natural inclinations, stifles initiative, and damages economic efficiency", ml: "വ്യക്തിയുടെ കഴിവിനെ ഇല്ലാതാക്കുകയും സാമ്പത്തിക കാര്യക്ഷമതയെ തകർക്കുകയും ചെയ്യുന്നതിനാൽ അത് ദോഷകരമാണ്" },
+          { text: "It is the ideal economic model for modern democratic industrial economies", ml: "ആധുനിക വ്യവസായങ്ങൾക്ക് അനുയോജ്യമായ മാതൃകയാണിത്" }
+        ],
+        ans: 2,
+        hint: "It kills initiative and misallocates productive human capital.",
+        hint_ml: "മനുഷ്യന്റെ കഴിവിനെയും താൽപര്യത്തെയും തല്ലിക്കെടുത്തുന്ന ഒരു സാമൂഹിക വിപത്താണത്."
+      },
+      {
+        q: "Why was Dr. Ambedkar's undelivered presidential address for the Jat-Pat-Todak Mandal conference of Lahore (1936) cancelled by the organizers?",
+        q_ml: "1936-ൽ ലാഹോറിൽ നടക്കേണ്ടിയിരുന്ന ജാത്-പാത്-തോടക് മണ്ഡൽ സമ്മേളനത്തിലെ അംബേദ്കറുടെ പ്രസംഗം സംഘാടകർ റദ്ദാക്കിയത് എന്തുകൊണ്ട്?",
+        options: [
+          { text: "Dr. Ambedkar was indisposed and unable to travel to Lahore", ml: "അംബേദ്കർക്ക് സുഖമില്ലാതിരുന്നതിനാൽ" },
+          { text: "The British colonial government enacted a curfew in Punjab", ml: "ബ്രിട്ടീഷ് സർക്കാർ കർഫ്യൂ ഏർപ്പെടുത്തിയതിനാൽ" },
+          { text: "The orthodox organizers found his uncompromising critique of sacred Hindu scriptures too provocative and demanded unaccepted revisions", ml: "വേദങ്ങളെയും ശാസ്ത്രങ്ങളെയും കുറിച്ചുള്ള വിമർശനം മാറ്റിയെഴുതാൻ സംഘാടകർ ആവശ്യപ്പെട്ടത് അദ്ദേഹം നിരസിച്ചതിനാൽ" },
+          { text: "The printed manuscript had not been submitted in time for translation", ml: "പ്രസംഗം കൃത്യസമയത്ത് അച്ചടിക്കാൻ കഴിയാത്തതിനാൽ" }
+        ],
+        ans: 2,
+        hint: "He refused to censor his radical critiques of orthodox religious texts.",
+        hint_ml: "തന്റെ പ്രസംഗത്തിലെ സത്യസന്ധമായ വിമർശനങ്ങളിൽ മാറ്റം വരുത്താൻ അദ്ദേഹം തയ്യാറായില്ല."
+      },
+      {
+        q: "According to Ambedkar, caste divides labourers into a hierarchy that is based strictly on:",
+        q_ml: "അംബേദ്കറുടെ അഭിപ്രായത്തിൽ ജാതിവ്യവസ്ഥ തൊഴിലാളികളെ തരംതിരിക്കുന്നത് എന്തിന്റെ അടിസ്ഥാനത്തിലാണ്?",
+        options: [
+          { text: "Merit and demonstrated technical craftsmanship", ml: "കഴിവിന്റെയും പ്രാവീണ്യത്തിന്റെയും അടിസ്ഥാനത്തിൽ" },
+          { text: "Accident of birth and inherited social lineage", ml: "ജനനത്തിന്റെയും കുടുംബ പാരമ്പര്യത്തിന്റെയും അടിസ്ഥാനത്തിൽ (Accident of birth)" },
+          { text: "Individual academic exam qualifications", ml: "വിദ്യാഭ്യാസ യോഗ്യതയുടെ അടിസ്ഥാനത്തിൽ" },
+          { text: "Personal democratic election by peers", ml: "ജനാധിപത്യപരമായ തിരഞ്ഞെടുപ്പിലൂടെ" }
+        ],
+        ans: 1,
+        hint: "Determined solely by parental ancestry rather than individual potential.",
+        hint_ml: "വ്യക്തിയുടെ യോഗ്യതയല്ല, ഏത് കുടുംബത്തിൽ ജനിച്ചു എന്നത് മാത്രമാണ് മാനദണ്ഡം."
+      },
+      {
+        q: "What does Dr. Ambedkar identify as a catastrophic consequence of caste-based occupational assignment on human talent?",
+        q_ml: "ജാതി അടിസ്ഥാനമാക്കിയുള്ള തൊഴിൽ നിർണ്ണയം മനുഷ്യന്റെ കഴിവിന്മേൽ ഉണ്ടാക്കുന്ന വിനാശകരമായ ആഘാതമായി അംബേദ്കർ കാണുന്നത് എന്താണ്?",
+        options: [
+          { text: "It generates excessive creative experimentation", ml: "കൂടുതൽ പരീക്ഷണങ്ങൾക്ക് വഴിവെക്കുന്നു" },
+          { text: "It ensures the equal distribution of industrial wealth", ml: "സമ്പത്തിന്റെ തുല്യവിതരണം ഉറപ്പാക്കുന്നു" },
+          { text: "It restricts individual freedom, smothers latent talent, and forces individuals into careers they despise", ml: "വ്യക്തിസ്വാതന്ത്ര്യത്തെ തടയുകയും കഴിവുകളെ നശിപ്പിക്കുകയും അനിഷ്ടമുള്ള തൊഴിലിലേക്ക് തള്ളിവിടുകയും ചെയ്യുന്നു" },
+          { text: "It enhances spontaneous cooperation among community groups", ml: "സഹകരണ മനോഭാവം വളർത്തുന്നു" }
+        ],
+        ans: 2,
+        hint: "Stifling genius and driving people into vocations against their natural disposition.",
+        hint_ml: "മനുഷ്യന്റെ കഴിവിനെയും സ്വാതന്ത്ര്യത്തെയും ഞെരുക്കിക്കളയുന്നു."
+      },
+      {
+        q: "According to Dr. Ambedkar, the insidious psychological harm inflicted by caste lies in its capacity to:",
+        q_ml: "അംബേദ്കറുടെ അഭിപ്രായത്തിൽ ജാതിവ്യവസ്ഥ വരുത്തിവെക്കുന്ന ആഴത്തിലുള്ള മാനസിക പ്രത്യാഘാതം എന്താണ്?",
+        options: [
+          { text: "Promote mutual fellowship and democratic civic responsibility", ml: "സാഹോദര്യവും പൗരബോധവും വളർത്തുന്നു" },
+          { text: "Enhance self-respect and pride among marginalized laborers", ml: "തൊഴിലാളികളിൽ ആത്മാഭിമാനം വളർത്തുന്നു" },
+          { text: "Instil feelings of inferiority, shame, helplessness, and enduring social stigma in subordinated classes", ml: "താഴ്ന്ന വിഭാഗങ്ങളിൽ അപകർഷതാബോധം, നിസ്സഹായത, അപമാനം എന്നിവ വളർത്തുന്നു" },
+          { text: "Strengthen fraternal national cohesion across linguistic boundaries", ml: "ദേശീയ ഐക്യം ശക്തിപ്പെടുത്തുന്നു" }
+        ],
+        ans: 2,
+        hint: "Internalized inferiority complexes and systematic degradation of human dignity.",
+        hint_ml: "മനുഷ്യരിൽ അപകർഷതാബോധവും അപമാനഭാരവും ഉണ്ടാക്കുന്നു."
+      },
+      {
+        q: "Ambedkar argues that the caste system cripples economic and social progress primarily because:",
+        q_ml: "ജാതിവ്യവസ്ഥ സാമ്പത്തികവും സാമൂഹികവുമായ പുരോഗതിയെ തടസ്സപ്പെടുത്തുന്നു എന്ന് അംബേദ്കർ പറയാൻ കാരണം എന്താണ്?",
+        options: [
+          { text: "It forces workers to learn too many competing trades", ml: "പല തൊഴിലുകൾ ഒരേസമയം പഠിക്കാൻ നിർബന്ധിക്കുന്നു" },
+          { text: "It incentivizes workers to abandon agriculture entirely", ml: "കൃഷി ഉപേക്ഷിക്കാൻ പ്രേരിപ്പിക്കുന്നു" },
+          { text: "It introduces sudden changes into industrial contracts", ml: "കരാറുകളിൽ മാറ്റം വരുത്തുന്നു" },
+          { text: "It rigidly locks generations into hereditary occupations regardless of individual ability or economic need", ml: "കഴിവും ആവശ്യകതയും നോക്കാതെ തലമുറകളെ പരമ്പരാഗത തൊഴിലുകളിൽ തളച്ചിടുന്നു" }
+        ],
+        ans: 3,
+        hint: "Free movement of labor and matching ability with opportunity are strictly denied.",
+        hint_ml: "മാറുന്ന കാലത്തിനനുസരിച്ച് ജനങ്ങളെ പുതിയ തൊഴിലുകൾ ചെയ്യാൻ അനുവദിക്കാതെ തളച്ചിടുന്നു."
+      },
+      {
+        q: "What is the absurd reason for the humble cook's sudden rise to worldwide fame in Basheer's satirical tale?",
+        q_ml: "ബഷീറിന്റെ ആക്ഷേപഹാസ്യ കഥയിൽ പാവം പാചകക്കാരൻ ലോകപ്രശസ്തനാകാനുള്ള വിചിത്രമായ കാരണം എന്താണ്?",
+        options: [
+          { text: "He discovers a miraculous cure for infectious disease", ml: "ഒരു മഹാരോഗത്തിന് പ്രതിവിധി കണ്ടെത്തിയത് കൊണ്ട്" },
+          { text: "He delivers a magnificent, revolutionary political speech", ml: "വിപ്ലവകരമായ ഒരു പ്രസംഗം നടത്തിയത് കൊണ്ട്" },
+          { text: "His nose begins to grow unusually long, extending past his mouth and chin", ml: "അയാളുടെ മൂക്ക് അസാധാരണമായി വളർന്ന് വായയും താടിയും കടന്നു വളർന്നതിനാൽ" },
+          { text: "He wins an international culinary championship", ml: "അന്താരാഷ്ട്ര പാചക മത്സരം ജയിച്ചതിനാൽ" }
+        ],
+        ans: 2,
+        hint: "A physical deformity extending beyond his chin becomes an overnight sensation.",
+        hint_ml: "മൂക്ക് അസാധാരണമായി നീണ്ടു വളർന്നത് കൊണ്ട്."
+      },
+      {
+        q: "Which social institution is most sharply satirized by Basheer for sensationally turning the poor cook into a public spectacle?",
+        q_ml: "പാവം പാചകക്കാരനെ ഒരു കാഴ്ചവസ്തുവാക്കി മാറ്റിയതിന് ബഷീർ ഏറ്റവും രൂക്ഷമായി പരിഹസിക്കുന്ന സ്ഥാപനം ഏതാണ്?",
+        options: [
+          { text: "The educational examination board", ml: "വിദ്യാഭ്യാസ പരീക്ഷാ ബോർഡ്" },
+          { text: "The sensationalist commercial media and press", ml: "വാണിജ്യ മാധ്യമങ്ങളും പത്രങ്ങളും (Media & Press)" },
+          { text: "The supreme judiciary", ml: "പരമോനത നീതിന്യായ കോടതി" },
+          { text: "The military establishment", ml: "സൈനിക വിഭാഗം" }
+        ],
+        ans: 1,
+        hint: "Journalists, paparazzi, and sensationalist newspapers seeking clickbait coverage.",
+        hint_ml: "വാർത്തകൾ പർവ്വതീകരിച്ച് കച്ചവടമാക്കുന്ന മാധ്യമങ്ങൾ."
+      },
+      {
+        q: "What does the cook's extraordinarily long nose primarily symbolize in the story?",
+        q_ml: "കഥയിൽ പാചകക്കാരന്റെ നീളമുള്ള മൂക്ക് പ്രധാനമായും എന്തിന്റെ പ്രതീകമാണ്?",
+        options: [
+          { text: "Noble physical strength and moral righteousness", ml: "ശാരീരിക ശക്തിയുടെയും ധാർമ്മികതയുടെയും" },
+          { text: "Society's hollow obsession with celebrity, irrational spectacle, and mass hype", ml: "അനാവശ്യ പ്രശസ്തിയിലും പൊള്ളയായ കാഴ്ചകളിലും ഭ്രമിക്കുന്ന സമൂഹത്തിന്റെ മാനസികാവസ്ഥ" },
+          { text: "Scientific curiosity and medical innovation", ml: "ശാസ്ത്രീയ കൗതുകം" },
+          { text: "Spiritual asceticism and religious piety", ml: "ആത്മീയ ഭക്തി" }
+        ],
+        ans: 1,
+        hint: "How meaningless oddities can whip an irrational public into frenzy.",
+        hint_ml: "അർത്ഥമില്ലാത്ത കാര്യങ്ങളെ കൊണ്ടാടുന്ന സമൂഹത്തിന്റെ പൊള്ളത്തരം."
+      },
+      {
+        q: "Which of the following characterizations best describes the protagonist cook throughout the events?",
+        q_ml: "കഥയിലുടനീളം നായകനായ പാചകക്കാരന്റെ സ്വഭാവത്തെ ഏറ്റവും നന്നായി വിവരിക്കുന്നത് ഏതാണ്?",
+        options: [
+          { text: "Ambitious, highly educated, and politically cunning", ml: "ഉയർന്ന വിദ്യാഭ്യാസവും രാഷ്ട്രീയ കുതന്ത്രങ്ങളുമുള്ളവൻ" },
+          { text: "Greedy, aristocratic, and eager to exploit the masses", ml: "അത്യാഗ്രഹിയായ ഒരു പ്രഭു" },
+          { text: "Simple, naive, bewildered, and easily exploited by opportunists", ml: "ലളിതഹൃദയനും നിഷ്കളങ്കനും അവസരവാദികളാൽ ചൂഷണം ചെയ്യപ്പെടുന്നവനുമായ മനുഷ്യൻ" },
+          { text: "Arrogant, tyrannical, and manipulative", ml: "അഹങ്കാരിയും മറ്റുള്ളവരെ നിയന്ത്രിക്കുന്നവനും" }
+        ],
+        ans: 2,
+        hint: "A bewildered bystander whose personal dignity is stolen for public profit.",
+        hint_ml: "തനിക്ക് ചുറ്റും നടക്കുന്നതിനെക്കുറിച്ച് ഒന്നുമറിയാത്ത പാവം നിഷ്കളങ്കൻ."
+      },
+      {
+        q: "How does Basheer mainly critique partisan politics in 'The World-Renowned Nose'?",
+        q_ml: "'വിശ്വവിഖ്യാതമായ മൂക്ക്' എന്ന കഥയിൽ കക്ഷിരാഷ്ട്രീയത്തെ ബഷീർ പ്രധാനമായും വിമർശിക്കുന്നത് എങ്ങനെയാണ്?",
+        options: [
+          { text: "By portraying party leaders as noble philosophical statesmen", ml: "രാഷ്ട്രീയക്കാരെ മാതൃകാ പുരുഷന്മാരായി കാണിച്ച്" },
+          { text: "By depicting rival political factions violently exploiting the cook's nose to divide citizens and win power", ml: "പാചകക്കാരന്റെ മൂക്കിനെച്ചൊല്ലി രാഷ്ട്രീയ പാർട്ടികൾ ജനങ്ങളെ ഭിന്നിപ്പിക്കാനും അധികാരം നേടാനും ശ്രമിക്കുന്നത് കാണിച്ച്" },
+          { text: "By proposing constitutional parliamentary reforms", ml: "ഭരണഘടനാ പരിഷ്കാരങ്ങൾ നിർദ്ദേശിച്ച്" },
+          { text: "By documenting historical voting turnout in provincial elections", ml: "തിരഞ്ഞെടുപ്പ് കണക്കുകൾ നിരത്തി" }
+        ],
+        ans: 1,
+        hint: "Political parties using absurd issues to polarize citizens and fight over supremacy.",
+        hint_ml: "നിസ്സാര കാര്യങ്ങളിൽ പോലും ജനങ്ങളെ വിഘടിപ്പിച്ച് മുതലെടുക്കുന്ന രാഷ്ട്രീയ പാർട്ടികളുടെ കളി."
+      },
+      {
+        q: "Which distinctive literary style is most brilliantly showcased throughout Basheer's masterpiece?",
+        q_ml: "ബഷീറിന്റെ ഈ മാസ്റ്റർപീസിൽ കാണാൻ കഴിയുന്ന സവിശേഷമായ സാഹിത്യ ശൈലി ഏതാണ്?",
+        options: [
+          { text: "Gloomy gothic tragedy", ml: "ഇരുണ്ട ഗോഥിക് ശൈലി" },
+          { text: "Sentimental romanticism and pastoral melodrama", ml: "റൊമാന്റിക് മെലോഡ്രാമ" },
+          { text: "Playful satire combined with hilarious irony, sharp wit, and purposeful exaggeration", ml: "ആക്ഷേപഹാസ്യവും നർമ്മവും നിറഞ്ഞ ബഷീറിയൻ ശൈലി" },
+          { text: "Hardboiled detective noir", ml: "ഡിറ്റക്റ്റീവ് ശൈലി" }
+        ],
+        ans: 2,
+        hint: "His trademark lighthearted satire that cuts deep into social reality.",
+        hint_ml: "ഹാസ്യവും തമാശയും കലർത്തി സമൂഹത്തെ ചിന്തിപ്പിക്കുന്ന ബഷീർ ശൈലി."
+      },
+      {
+        q: "What is the primary idyllic setting of Giuseppe Tornatore's cinematic masterpiece 'Cinema Paradiso'?",
+        q_ml: "ഗിസെപ്പെ ടൊർണറ്റോറെയുടെ 'സിനിമ പാരഡൈസോ' എന്ന ചലച്ചിത്രത്തിന്റെ പശ്ചാത്തലമായ ഗ്രാമം ഏതാണ്?",
+        options: [
+          { text: "A bustling industrial boulevard in central Rome", ml: "റോമിലെ തിരക്കേറിയ നഗരം" },
+          { text: "A small, nostalgic Sicilian village named Giancaldo", ml: "ജിയാൻകാൽഡോ എന്ന സിസിലിയൻ ഗ്രാമം (Giancaldo)" },
+          { text: "An alpine fishing village in northern France", ml: "ഫ്രാൻസിലെ ഒരു ഗ്രാമം" },
+          { text: "A coastal resort town in Mediterranean Spain", ml: "സ്പെയിനിലെ തീരദേശ നഗരം" }
+        ],
+        ans: 1,
+        hint: "The quaint, nostalgic post-war Sicilian community of Giancaldo.",
+        hint_ml: "സിസിലിയിലെ മനോഹരമായ ഒരു ചെറിയ ഗ്രാമം."
+      },
+      {
+        q: "What vital role does the cinema projectionist Alfredo play in young Salvatore's (Toto's) life?",
+        q_ml: "ചെറിയ സാൽവദോറിന്റെ (ടോട്ടോ) ജീവിതത്തിൽ സിനിമ പ്രൊജക്ഷനിസ്റ്റായ ആൽഫ്രെഡോയുടെ പങ്ക് എന്താണ്?",
+        options: [
+          { text: "He is Toto's strict elementary schoolteacher", ml: "അവന്റെ കർക്കശക്കാരനായ സ്കൂൾ അധ്യാപകൻ" },
+          { text: "He is Toto's elder brother", ml: "അവന്റെ മൂത്ത സഹോദരൻ" },
+          { text: "He becomes Toto's wise mentor, guide, and surrogate father figure", ml: "അവന്റെ വഴികാട്ടിയും പിതൃതുല്യനായ ഗുരുനാഥനുമായി മാറുന്നു" },
+          { text: "He is a wealthy film producer from Rome", ml: "റോമിൽ നിന്നുള്ള ഒരു നിർമ്മാതാവ്" }
+        ],
+        ans: 2,
+        hint: "A fatherly mentor who teaches him the magic of cinema and encourages him to leave and thrive.",
+        hint_ml: "ടോട്ടോയ്ക്ക് സിനിമയുടെ വിസ്മയം പകർന്നുനൽകിയ പിതൃതുല്യനായ വഴികാട്ടി."
+      },
+      {
+        q: "According to Kusali Rupasinghe's review, why is 'Cinema Paradiso' widely celebrated as a profound 'love letter to cinema'?",
+        q_ml: "കുസാലി രൂപസിംഗെയുടെ നിരൂപണമനുസരിച്ച് 'സിനിമ പാരഡൈസോ'യെ സിനിമയോടുള്ള 'പ്രണയലേഖനം' എന്ന് വിശേഷിപ്പിക്കാൻ കാരണം എന്താണ്?",
+        options: [
+          { text: "Because it focuses strictly on the technical mechanisms of camera lenses", ml: "ക്യാമറ ലെൻസുകളെക്കുറിച്ചുള്ള സാങ്കേതിക വിവരങ്ങൾ മാത്രം പറയുന്നതിനാൽ" },
+          { text: "Because it honors the communal magic, tender nostalgia, and life-shaping power of movie-watching", ml: "സിനിമ കാണുന്നതിന്റെ കൂട്ടായ്മയും ഗൃഹാതുരത്വവും ജീവിതത്തെ മാറ്റിമറിക്കാനുള്ള ശക്തിയും അത് ആഘോഷിക്കുന്നതിനാൽ" },
+          { text: "Because it denounces television as an inferior artistic medium", ml: "ടെലിവിഷനെ തരംതാഴ്ത്തി കാണിക്കുന്നതിനാൽ" },
+          { text: "Because it chronicles the commercial box-office statistics of Hollywood studios", ml: "ഹോളിവുഡ് ബോക്സോഫീസ് കളക്ഷൻ വിവരിക്കുന്നതിനാൽ" }
+        ],
+        ans: 1,
+        hint: "The shared collective experience of moviegoers in the heart of a village.",
+        hint_ml: "മനുഷ്യരെ ഒന്നിപ്പിക്കാനും സ്വപ്നം കാണാനും പഠിപ്പിക്കുന്ന സിനിമയുടെ മാന്ത്രികതയെ അത് തൊട്ടുകാണിക്കുന്നു."
+      },
+      {
+        q: "In the local village theatre, what comical ritual does the parish priest perform whenever an affectionate kissing scene appears on screen?",
+        q_ml: "ഗ്രാമത്തിലെ തിയേറ്ററിൽ സിനിമയിൽ ചുംബനരംഗങ്ങൾ വരുമ്പോൾ വികാരിയച്ചൻ ചെയ്യുന്ന തമാശയായ ആചാരം എന്താണ്?",
+        options: [
+          { text: "He stands up and orders the entire audience to evacuate", ml: "എല്ലാവരോടും തിയേറ്റർ വിട്ടുപോകാൻ ആവശ്യപ്പെടുന്നു" },
+          { text: "He applauds enthusiastically with the townspeople", ml: "നാട്ടുകാരോടൊപ്പം കൈയടിക്കുന്നു" },
+          { text: "He vigorously rings his bell to order Alfredo to censor and cut the intimate footage", ml: "ആ രംഗം മുറിച്ചുമാറ്റാൻ ആൽഫ്രെഡോയോട് ആവശ്യപ്പെട്ട് തന്റെ കൈയിലെ മണി അടിക്കുന്നു" },
+          { text: "He confiscates the cinema reels permanently", ml: "സിനിമാ റീലുകൾ പിടിച്ചെടുക്കുന്നു" }
+        ],
+        ans: 2,
+        hint: "Ringing his bell to flag forbidden romantic frames for censorship.",
+        hint_ml: "ചുംബന രംഗങ്ങൾ ഒഴിവാക്കാൻ മണി മുഴക്കി നിർദ്ദേശം നൽകുന്നു."
+      },
+      {
+        q: "Which of the following qualities of Kusali Rupasinghe's analysis best demonstrates exemplary film review writing?",
+        q_ml: "കുസാലി രൂപസിംഗെയുടെ നിരൂപണം ഒരു മികച്ച ഫിലിം റിവ്യൂ ആയി മാറുന്നത് എന്തുകൊണ്ടാണ്?",
+        options: [
+          { text: "Disclosing every plot twist and ending surprise without warning", ml: "സിനിമയുടെ എല്ലാ ട്വിസ്റ്റുകളും മുൻകൂട്ടി പറഞ്ഞുതരുന്നതിനാൽ" },
+          { text: "Summarizing the plot line-by-line without examining artistic themes or emotional subtext", ml: "കഥ മാത്രം വരിവരിയായി വിവരിക്കുന്നതിനാൽ" },
+          { text: "Weaving personal heartfelt memories with insightful critical analysis while scrupulously avoiding spoilers", ml: "കഥ ചോർത്താതെ, സ്വന്തം ഓർമ്മകളെയും സിനിമയുടെ ആഴത്തിലുള്ള തലങ്ങളെയും സമന്വയിപ്പിച്ച് വിശകലനം ചെയ്യുന്നതിനാൽ" },
+          { text: "Dismissing all emotional resonance as unscientific sentimentality", ml: "വികാരങ്ങളെ അവഗണിക്കുന്നതിനാൽ" }
+        ],
+        ans: 2,
+        hint: "Balancing emotional introspection and cinematic insight without spoiling the plot.",
+        hint_ml: "വ്യക്തിപരമായ വികാരങ്ങളും സാങ്കേതിക അവലോകനങ്ങളും കൃത്യമായി സമന്വയിപ്പിച്ചിരിക്കുന്നു."
+      },
+      {
+        q: "Which poignant theme is most powerfully conveyed when adult Salvatore returns to Giancaldo following Alfredo's passing?",
+        q_ml: "ആൽഫ്രെഡോയുടെ മരണശേഷം മുതിർന്ന സാൽവദോർ ഗ്രാമത്തിലേക്ക് മടങ്ങിയെത്തുമ്പോൾ അനുഭവപ്പെടുന്ന വികാരം എന്താണ്?",
+        options: [
+          { text: "The triumph of urban industrialization over traditional craft", ml: "പരമ്പരാഗത തൊഴിലിന്മേൽ നഗരവൽക്കരണത്തിന്റെ വിജയം" },
+          { text: "Intense rivalry in corporate commercial film distribution", ml: "സിനിമാ വിതരണത്തിലെ മത്സരം" },
+          { text: "The bittersweet weight of nostalgia, the passage of time, and the indelible imprint of childhood roots", ml: "ഗൃഹാതുരത്വം, കടന്നുപോയ കാലം, കുട്ടിക്കാലത്തെ വേരുകൾ നൽകുന്ന മായാത്ത ഓർമ്മകൾ" },
+          { text: "The political disputes of post-war Italian regional governance", ml: "ഇറ്റാലിയൻ രാഷ്ട്രീയ തർക്കങ്ങൾ" }
+        ],
+        ans: 2,
+        hint: "The bittersweet longing for the lost innocence and warmth of youth.",
+        hint_ml: "നഷ്ടപ്പെട്ടുപോയ ബാല്യകാല ഓർമ്മകളുടെയും സ്നേഹത്തിന്റെയും നൊമ്പരം."
+      }
+    ];
+
+    // --- 2. STATE MANAGEMENT ---
+    let studentName = "";
+    let examDate = "";
+    let startTime = null;
+    let endTime = null;
+    let userAnswers = {}; // { qIndex: selectedOptionIndex }
+    let isSubmitted = false;
+
+    const GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbw6IXYRG6MiU8g6TJQu5H1H7jdtAPjy3_9j5FT5uJSpRIoQwGM9aIVQs7-XFTX05Alclw/exec";
+
+    // --- 3. DOM ELEMENTS ---
+    const loginSection = document.getElementById("login-section");
+    const examSection = document.getElementById("exam-section");
+    const studentNameInput = document.getElementById("student-name");
+    const btnStart = document.getElementById("btn-start");
+    const studentBadge = document.getElementById("student-badge");
+    const questionsList = document.getElementById("questions-list");
+    const btnSubmit = document.getElementById("btn-submit");
+    const topScorecardContainer = document.getElementById("top-scorecard-container");
+    const bottomScorecardContainer = document.getElementById("bottom-scorecard-container");
+
+    const confirmModal = document.getElementById("confirm-modal");
+    const unansweredCountText = document.getElementById("unanswered-count-text");
+    const btnModalReview = document.getElementById("btn-modal-review");
+    const btnModalProceed = document.getElementById("btn-modal-proceed");
+
+    // Initialize date silently for payload logging
+    const now = new Date();
+    examDate = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+    // --- 4. START EXAM ---
+    btnStart.addEventListener("click", () => {
+      const name = studentNameInput.value.trim();
+      if (!name) {
+        alert("Please enter your full name to proceed with the examination.");
+        studentNameInput.focus();
+        return;
+      }
+      studentName = name;
+      studentBadge.textContent = "Student: " + studentName;
+
+      loginSection.classList.add("hidden");
+      examSection.classList.remove("hidden");
+      startTime = new Date();
+
+      renderQuestions();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // --- 5. RENDER QUESTIONS ---
+    function renderQuestions() {
+      questionsList.innerHTML = "";
+      questionsData.forEach((qData, qIndex) => {
+        const card = document.createElement("div");
+        card.className = "card question-card";
+        card.id = `q-card-${qIndex}`;
+
+        // Options HTML
+        let optionsHtml = "";
+        qData.options.forEach((opt, optIndex) => {
+          optionsHtml += `
+            <label class="option-label" id="opt-label-${qIndex}-${optIndex}">
+              <input type="radio" name="question-${qIndex}" value="${optIndex}" onchange="handleOptionSelect(${qIndex}, ${optIndex})">
+              <span class="opt-text">${String.fromCharCode(65 + optIndex)}. ${opt.text}</span>
+              <span class="ml-text hidden opt-ml-text" id="opt-ml-${qIndex}-${optIndex}">[ ${opt.ml} ]</span>
+            </label>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="q-number">Question ${qIndex + 1} of ${questionsData.length}</div>
+          <div class="q-text">
+            <span>${qData.q}</span>
+            <span class="ml-text hidden q-ml-text" id="q-ml-${qIndex}">[ ${qData.q_ml} ]</span>
+          </div>
+
+          <div class="options-grid" id="options-group-${qIndex}">
+            ${optionsHtml}
+          </div>
+
+          <div class="card-actions">
+            <button type="button" class="btn btn-outline" onclick="toggleHint(${qIndex})">Hint</button>
+            <button type="button" class="btn btn-outline" onclick="toggleMalayalam(${qIndex})">Malayalam</button>
+          </div>
+
+          <div class="hint-container" id="hint-box-${qIndex}">
+            <strong>Clue:</strong> ${qData.hint}
+            <span class="ml-text hidden hint-ml-text" id="hint-ml-${qIndex}"><br>[ ${qData.hint_ml} ]</span>
+          </div>
+
+          <div id="status-badge-${qIndex}"></div>
+        `;
+
+        questionsList.appendChild(card);
+      });
+    }
+
+    // --- 6. OPTION SELECTION & LOCKING ---
+    window.handleOptionSelect = function(qIndex, selectedOptIndex) {
+      if (userAnswers.hasOwnProperty(qIndex) || isSubmitted) return;
+
+      userAnswers[qIndex] = selectedOptIndex;
+      const qData = questionsData[qIndex];
+      const isCorrect = (selectedOptIndex === qData.ans);
+
+      // Lock all options for this question
+      const group = document.getElementById(`options-group-${qIndex}`);
+      const radios = group.querySelectorAll('input[type="radio"]');
+      radios.forEach(r => r.disabled = true);
+
+      const labels = group.querySelectorAll('.option-label');
+      labels.forEach(l => l.classList.add('locked'));
+
+      // Highlight selected
+      const selectedLabel = document.getElementById(`opt-label-${qIndex}-${selectedOptIndex}`);
+      if (isCorrect) {
+        selectedLabel.classList.add("correct");
+      } else {
+        selectedLabel.classList.add("incorrect");
+        // Highlight correct option
+        const correctLabel = document.getElementById(`opt-label-${qIndex}-${qData.ans}`);
+        if (correctLabel) {
+          correctLabel.classList.add("correct");
+        }
+      }
+
+      // Display Status Badge
+      const statusContainer = document.getElementById(`status-badge-${qIndex}`);
+      if (isCorrect) {
+        statusContainer.innerHTML = `<span class="status-badge status-correct">✓ Correct Answer</span>`;
+      } else {
+        statusContainer.innerHTML = `<span class="status-badge status-incorrect">✕ Incorrect Answer</span>`;
+      }
+    };
+
+    // --- 7. HINT & MALAYALAM TOGGLES ---
+    window.toggleHint = function(qIndex) {
+      const hintBox = document.getElementById(`hint-box-${qIndex}`);
+      if (hintBox.style.display === "block") {
+        hintBox.style.display = "none";
+      } else {
+        hintBox.style.display = "block";
+      }
+    };
+
+    window.toggleMalayalam = function(qIndex) {
+      const qMl = document.getElementById(`q-ml-${qIndex}`);
+      const isShowing = !qMl.classList.contains("hidden");
+
+      if (isShowing) {
+        qMl.classList.add("hidden");
+        document.getElementById(`hint-ml-${qIndex}`).classList.add("hidden");
+        questionsData[qIndex].options.forEach((_, optIndex) => {
+          document.getElementById(`opt-ml-${qIndex}-${optIndex}`).classList.add("hidden");
+        });
+      } else {
+        qMl.classList.remove("hidden");
+        document.getElementById(`hint-ml-${qIndex}`).classList.remove("hidden");
+        questionsData[qIndex].options.forEach((_, optIndex) => {
+          document.getElementById(`opt-ml-${qIndex}-${optIndex}`).classList.remove("hidden");
+        });
+      }
+    };
+
+    // --- 8. SUBMISSION LOGIC & MODAL ---
+    btnSubmit.addEventListener("click", () => {
+      if (isSubmitted) return;
+
+      const total = questionsData.length;
+      const attended = Object.keys(userAnswers).length;
+      const unattended = total - attended;
+
+      if (unattended > 0) {
+        unansweredCountText.textContent = `You have skipped ${unattended} question${unattended > 1 ? 's' : ''}. Unanswered questions will be marked as incorrect. Are you sure you want to proceed?`;
+        confirmModal.style.display = "flex";
+      } else {
+        finalizeExam();
+      }
+    });
+
+    btnModalReview.addEventListener("click", () => {
+      confirmModal.style.display = "none";
+    });
+
+    btnModalProceed.addEventListener("click", () => {
+      confirmModal.style.display = "none";
+      finalizeExam();
+    });
+
+    // --- 9. FINALIZE & CALCULATE SCORE ---
+    function finalizeExam() {
+      if (isSubmitted) return;
+      isSubmitted = true;
+      endTime = new Date();
+
+      btnSubmit.style.display = "none";
+
+      let score = 0;
+      const total = questionsData.length;
+      const attended = Object.keys(userAnswers).length;
+      const unattended = total - attended;
+
+      questionsData.forEach((qData, qIndex) => {
+        const userChoice = userAnswers[qIndex];
+        if (userChoice !== undefined) {
+          if (userChoice === qData.ans) {
+            score++;
+          }
+        } else {
+          // Unattended question: Lock and reveal correct answer in green
+          const group = document.getElementById(`options-group-${qIndex}`);
+          const radios = group.querySelectorAll('input[type="radio"]');
+          radios.forEach(r => r.disabled = true);
+          const labels = group.querySelectorAll('.option-label');
+          labels.forEach(l => l.classList.add('locked'));
+
+          const correctLabel = document.getElementById(`opt-label-${qIndex}-${qData.ans}`);
+          if (correctLabel) {
+            correctLabel.classList.add("correct");
+          }
+
+          const statusContainer = document.getElementById(`status-badge-${qIndex}`);
+          statusContainer.innerHTML = `<span class="status-badge status-incorrect">Unanswered (Correct Revealed)</span>`;
+        }
+      });
+
+      const percentage = Math.round((score / total) * 100);
+      let grade = "F";
+      if (percentage >= 90) grade = "A+";
+      else if (percentage >= 80) grade = "A";
+      else if (percentage >= 70) grade = "B";
+      else if (percentage >= 60) grade = "C";
+      else if (percentage >= 50) grade = "D";
+
+      // Time calculation (Calculated and passed to Google Sheet silently)
+      const timeDiffSec = Math.floor((endTime - startTime) / 1000);
+      const minutes = Math.floor(timeDiffSec / 60);
+      const seconds = timeDiffSec % 60;
+      const timeTakenStr = `${minutes}m ${seconds}s`;
+
+      // Performance motivational note
+      let performanceNote = "";
+      if (percentage >= 85) {
+        performanceNote = "Exceptional performance! You have demonstrated thorough mastery of the literary texts, analytical devices, and historical contexts across all modules.";
+      } else if (percentage >= 70) {
+        performanceNote = "Well done! You show a strong understanding of the themes and communication principles. Review the missed questions to reinforce key concepts.";
+      } else if (percentage >= 50) {
+        performanceNote = "Good effort! You have cleared the core criteria. Dedicated revision of specific literary devices and text analyses will significantly enhance your grasp.";
+      } else {
+        performanceNote = "Don't be discouraged! Take time to re-read the prescribed literary selections and review the analytical hints provided for each question.";
+      }
+
+      // Student Scorecard HTML (Exam Date and Time Taken removed from UI)
+      const scorecardHtml = `
+        <div class="scorecard">
+          <h3>Official Examination Scorecard</h3>
+          <div class="scorecard-grid">
+            <div class="score-item"><div class="label">Candidate Name</div><div class="val" style="font-size:1.05rem;">${studentName}</div></div>
+            <div class="score-item"><div class="label">Subject</div><div class="val" style="font-size:0.95rem;">ENGIFA101</div></div>
+            <div class="score-item"><div class="label">Total Questions</div><div class="val">${total}</div></div>
+            <div class="score-item"><div class="label">Attended</div><div class="val">${attended}</div></div>
+            <div class="score-item"><div class="label">Unattended</div><div class="val">${unattended}</div></div>
+            <div class="score-item"><div class="label">Final Score</div><div class="val" style="color:var(--accent);">${score} / ${total}</div></div>
+            <div class="score-item"><div class="label">Percentage</div><div class="val">${percentage}%</div></div>
+            <div class="score-item"><div class="label">Awarded Grade</div><div class="val" style="color:var(--primary);">${grade}</div></div>
+          </div>
+          <div class="performance-note">
+            <strong>Performance Assessment:</strong> ${performanceNote}
+          </div>
+        </div>
+      `;
+
+      topScorecardContainer.innerHTML = scorecardHtml;
+      bottomScorecardContainer.innerHTML = scorecardHtml;
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // --- 10. SILENT GOOGLE SHEETS BACKGROUND SYNC ---
+      // Both date and timeTaken remain intact in payload
+      const payload = {
+        timestamp: new Date().toISOString(),
+        name: studentName,
+        subject: "English Language Skills for Humanities and Other BA Programmes ( ENGIFA101 )",
+        date: examDate,
+        timeTaken: timeTakenStr,
+        total: total,
+        attended: attended,
+        unattended: unattended,
+        score: score,
+        percentage: percentage + "%",
+        grade: grade
+      };
+
+      try {
+        fetch(GOOGLE_SHEET_WEBAPP_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          body: JSON.stringify({
+            timestamp: payload.timestamp,
+            name: payload.name,
+            subject: payload.subject,
+            date: payload.date,
+            timeTaken: payload.timeTaken,
+            total: payload.total,
+            attended: payload.attended,
+            unattended: payload.unattended,
+            score: payload.score,
+            percentage: payload.percentage,
+            grade: payload.grade
+          })
+        }).catch(() => {});
+      } catch (err) {
+        // Fail silently
+      }
+    }
+  </script>
+</body>
+</html>
